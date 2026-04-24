@@ -311,31 +311,59 @@
     #colecao { background: var(--white); }
     .collection-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
     .collection-item {
-      min-height: 280px;
+      min-height: 320px;
       border-radius: 28px;
       overflow: hidden;
       position: relative;
-      background: linear-gradient(150deg, var(--blue-soft), var(--white));
+      background: linear-gradient(180deg, #f5fbff 0%, #ffffff 100%);
       border: 1px solid var(--line);
-      padding: 1.5rem;
+      padding: 1.35rem;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+      transition: transform .25s, box-shadow .25s;
+      box-shadow: 0 12px 35px rgba(11,79,145,.06);
     }
+    .collection-item:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
     .collection-item::before {
       content: '';
       position: absolute;
-      width: 220px;
-      height: 90px;
-      border-radius: 100px;
-      border: 18px solid rgba(47,150,241,.18);
-      transform: rotate(-22deg);
-      top: 58px;
-      left: 28px;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(47,150,241,.12), transparent 38%);
+      pointer-events: none;
     }
-    .collection-item:nth-child(2)::before { transform: rotate(18deg); top: 45px; }
-    .collection-item:nth-child(3)::before { transform: rotate(-8deg); width: 190px; }
-    .collection-item:nth-child(4)::before { transform: rotate(25deg); }
+    .collection-visual {
+      position: relative;
+      z-index: 2;
+      height: 165px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(47,150,241,.10) 0%, rgba(47,150,241,.04) 100%);
+      border: 1px solid rgba(47,150,241,.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      overflow: hidden;
+    }
+    .collection-visual::after {
+      content: '';
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.65);
+      top: -48px;
+      right: -30px;
+      filter: blur(2px);
+    }
+    .collection-visual svg {
+      width: 88%;
+      max-width: 250px;
+      height: auto;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 12px 16px rgba(47,150,241,.12));
+    }
     .collection-item h3 { position: relative; z-index: 2; color: var(--blue-dark); margin-bottom: .4rem; }
     .collection-item p { position: relative; z-index: 2; color: var(--muted); line-height: 1.6; }
 
@@ -545,10 +573,83 @@
       <p class="lead">A nossa coleção reúne modelos pensados para o dia a dia, para ocasiões profissionais e para clientes que procuram calçado com conforto e estética cuidada.</p>
     </div>
     <div class="collection-grid">
-      <div class="collection-item"><h3>Casual</h3><p>Modelos práticos, confortáveis e fáceis de usar.</p></div>
-      <div class="collection-item"><h3>Clássico</h3><p>Linhas elegantes para uma presença discreta e profissional.</p></div>
-      <div class="collection-item"><h3>Conforto</h3><p>Formas e materiais pensados para bem-estar ao longo do dia.</p></div>
-      <div class="collection-item"><h3>Exclusivo</h3><p>Propostas diferenciadas para marcas e clientes específicos.</p></div>
+      <div class="collection-item">
+        <div class="collection-visual" aria-hidden="true">
+          <svg viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="casualGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="100%" stop-color="#cfe8ff"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="138" cy="122" rx="78" ry="13" fill="#d9ebfb"/>
+            <path d="M62 100C69 92 79 82 95 76L132 60C139 57 148 58 154 62L180 77C186 81 190 87 192 94L199 99C203 101 205 104 205 108C205 112 202 115 197 115H69C60 115 55 111 55 104C55 102 57 100 62 100Z" fill="url(#casualGrad)" stroke="#78b5f7" stroke-width="4"/>
+            <path d="M87 86L105 78M111 76L129 69M135 77L153 72M161 84L177 82" stroke="#78b5f7" stroke-width="4" stroke-linecap="round"/>
+            <path d="M73 115H199" stroke="#0b4f91" stroke-width="5" stroke-linecap="round"/>
+            <path d="M80 95C90 95 98 102 102 109" stroke="#9acbfb" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Casual</h3>
+        <p>Modelos práticos, confortáveis e fáceis de usar.</p>
+      </div>
+      <div class="collection-item">
+        <div class="collection-visual" aria-hidden="true">
+          <svg viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="classicGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="100%" stop-color="#d9ecff"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="138" cy="122" rx="80" ry="13" fill="#d9ebfb"/>
+            <path d="M58 102C73 92 88 82 103 72L137 55C145 51 155 53 161 60L179 80C183 84 187 91 191 100L203 104C208 106 210 108 210 112C210 116 207 118 201 118H69C60 118 54 114 54 108C54 105 55 104 58 102Z" fill="url(#classicGrad)" stroke="#6caef4" stroke-width="4"/>
+            <path d="M133 56L143 76M122 63L135 83M149 73L170 73" stroke="#6caef4" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M72 118H201" stroke="#0b4f91" stroke-width="5" stroke-linecap="round"/>
+            <path d="M184 97L192 97" stroke="#9acbfb" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Clássico</h3>
+        <p>Linhas elegantes para uma presença discreta e profissional.</p>
+      </div>
+      <div class="collection-item">
+        <div class="collection-visual" aria-hidden="true">
+          <svg viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="comfortGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="100%" stop-color="#d8ecff"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="137" cy="123" rx="79" ry="13" fill="#d9ebfb"/>
+            <path d="M64 102C72 93 82 83 96 77L126 65C134 61 144 61 152 66L175 80C183 85 189 93 193 102L202 105C206 106 208 109 208 112C208 116 205 118 199 118H74C63 118 57 114 57 107C57 105 60 103 64 102Z" fill="url(#comfortGrad)" stroke="#74b4f6" stroke-width="4"/>
+            <path d="M92 81C100 73 116 69 129 73C140 76 149 86 151 96" fill="none" stroke="#9bcdfb" stroke-width="4" stroke-linecap="round"/>
+            <path d="M82 118H198" stroke="#0b4f91" stroke-width="5" stroke-linecap="round"/>
+            <path d="M86 123C94 128 105 131 119 131C146 131 160 121 173 121" fill="none" stroke="#86bdf8" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Conforto</h3>
+        <p>Formas e materiais pensados para bem-estar ao longo do dia.</p>
+      </div>
+      <div class="collection-item">
+        <div class="collection-visual" aria-hidden="true">
+          <svg viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="exclusiveGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="100%" stop-color="#cfe7ff"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="139" cy="122" rx="77" ry="12" fill="#d9ebfb"/>
+            <path d="M80 88C95 75 113 65 137 60C146 58 154 63 157 71L163 87C165 91 170 95 176 98L193 105C198 107 201 110 201 114C201 117 198 119 192 119H87C78 119 73 116 73 111C73 104 76 96 80 88Z" fill="url(#exclusiveGrad)" stroke="#6aaef4" stroke-width="4"/>
+            <path d="M95 119L107 87" stroke="#0b4f91" stroke-width="5" stroke-linecap="round"/>
+            <path d="M96 88C107 79 123 72 141 68" fill="none" stroke="#8fc5fa" stroke-width="4" stroke-linecap="round"/>
+            <path d="M107 119H192" stroke="#0b4f91" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="159" cy="74" r="4" fill="#9bcdfb"/>
+          </svg>
+        </div>
+        <h3>Exclusivo</h3>
+        <p>Propostas diferenciadas para marcas e clientes específicos.</p>
+      </div>
     </div>
   </section>
 
