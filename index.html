@@ -72,6 +72,15 @@
       transition: color .25s ease;
     }
     nav ul a:hover { color: var(--blue); }
+    .nav-right { display:flex; align-items:center; gap:1.3rem; }
+    .header-tools { display:flex; align-items:center; gap:.72rem; color:#555; font-size:.82rem; font-weight:600; }
+    .social-link { display:inline-flex; align-items:center; justify-content:center; color:#6a6a6a; text-decoration:none; transition:color .25s ease, transform .2s ease; }
+    .social-link:hover { color:var(--blue); transform:translateY(-1px); }
+    .social-link svg { width:18px; height:18px; fill:currentColor; display:block; }
+    .lang-link { border:0; background:transparent; color:#17314f; font:inherit; font-size:.78rem; font-weight:700; cursor:pointer; padding:.1rem .12rem; }
+    .lang-link.active, .lang-link:hover { color:var(--blue); }
+    .sep { color:#b8b8b8; font-weight:400; }
+
     .nav-cta {
       background: var(--blue);
       color: var(--white) !important;
@@ -403,6 +412,8 @@
       .stats { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 720px) {
+      .nav-right { gap:.85rem; }
+      .header-tools { gap:.55rem; }
       nav { padding: .85rem 5vw; }
       .logo-wrap img { width: 130px; }
       nav ul { display:none; position:absolute; left:0; right:0; top:68px; flex-direction:column; align-items:flex-start; background:var(--white); padding:1.2rem 6vw; border-bottom:1px solid var(--line); }
@@ -429,7 +440,20 @@
       <li><a href="#privados">Desenvolvimentos privados</a></li>
       <li><a href="#contactos" class="nav-cta">Contactos</a></li>
     </ul>
-    <button class="hamburger" id="menuBtn" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    <div class="nav-right">
+      <div class="header-tools" aria-label="Redes sociais e idiomas">
+        <a class="social-link" href="https://www.instagram.com/kiarteshoefactory/" target="_blank" rel="noopener" aria-label="Instagram KIARTE">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5ZM12 7.35A4.65 4.65 0 1 1 12 16.65 4.65 4.65 0 0 1 12 7.35Zm0 2A2.65 2.65 0 1 0 12 14.65 2.65 2.65 0 0 0 12 9.35Zm5.05-2.35a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0Z"/></svg>
+        </a>
+        <a class="social-link" href="https://www.facebook.com/kiarteshoes/" target="_blank" rel="noopener" aria-label="Facebook KIARTE">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.84c0-2.52 1.49-3.91 3.77-3.91 1.09 0 2.23.2 2.23.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.08 22 12.06Z"/></svg>
+        </a>
+        <button class="lang-link active" type="button" data-lang="pt">PT</button><span class="sep">|</span>
+        <button class="lang-link" type="button" data-lang="en">EN</button><span class="sep">|</span>
+        <button class="lang-link" type="button" data-lang="es">ES</button>
+      </div>
+      <button class="hamburger" id="menuBtn" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
   </nav>
 
   <section id="hero">
@@ -601,6 +625,78 @@
         event.target.reset();
       }, 2500);
     }
+
+    const translations = {
+      pt: {
+        navSobre: 'Sobre', navServicos: 'O que fazemos', navColecao: 'Coleção', navPrivados: 'Desenvolvimentos privados', navContactos: 'Contactos',
+        eyebrow: 'Calçado português', heroTitle: 'Criamos calçado com <span>identidade</span>, conforto e detalhe.',
+        heroDesc: 'A KIARTE é uma empresa de calçado dedicada à criação de coleção própria e ao desenvolvimento privado de modelos para marcas, empresas e clientes profissionais. Unimos experiência, seleção de materiais e atenção ao acabamento para transformar ideias em produto.',
+        btnColecao: 'Ver coleção', btnModelo: 'Desenvolver modelo', heroCardTitle: 'Coleção própria e produção à medida.', heroCardText: 'Do desenho inicial à amostra final, acompanhamos cada etapa com rigor, proximidade e foco no resultado.',
+        sobreTag:'Sobre a KIARTE', sobreBoxTitle:'Da ideia ao produto final', sobreBoxText:'Trabalhamos com foco no conforto, na estética e na viabilidade de produção, garantindo soluções ajustadas a cada cliente.', sobreTitle:'Calçado pensado para marcas que valorizam <span>qualidade</span>.', sobreP1:'A KIARTE desenvolve soluções de calçado com uma abordagem prática, cuidada e próxima. Criamos modelos para a nossa própria coleção e colaboramos com clientes que procuram desenvolver produtos exclusivos, adaptados ao seu posicionamento e ao seu público.', sobreP2:'Acreditamos que um bom sapato começa numa boa ideia, mas ganha valor nos detalhes: escolha de materiais, conforto, forma, acabamento e coerência visual.', sobreBtn:'Falar com a KIARTE',
+        servTag:'O que fazemos', servTitle:'Soluções para criação e desenvolvimento de <span>calçado</span>.', servLead:'Acompanhamos o processo desde o conceito inicial até à preparação do produto, seja para coleção própria, marca privada ou desenvolvimento personalizado.',
+        own:'Coleção própria', ownText:'Modelos KIARTE pensados para diferentes estilos, com foco na qualidade, conforto e presença visual.', priv:'Desenvolvimento privado', privText:'Criamos modelos exclusivos para marcas e empresas, respeitando briefing, posicionamento, materiais e objetivos comerciais.', samples:'Amostras e protótipos', samplesText:'Transformamos ideias em amostras físicas para validação de forma, conforto, materiais, cor e acabamento.', materials:'Seleção de materiais', materialsText:'Apoio na escolha de peles, componentes, solas, forros e acabamentos adequados ao modelo pretendido.', tech:'Acompanhamento técnico', techText:'Monitorização das etapas de desenvolvimento para garantir coerência, viabilidade e atenção ao detalhe.', brandProd:'Produto para marca', brandProdText:'Soluções ajustadas para quem pretende lançar, renovar ou complementar uma linha de calçado.',
+        colTag:'Coleção', colTitle:'Uma coleção própria com linhas versáteis e <span>atuais</span>.', colLead:'A nossa coleção reúne modelos pensados para o dia a dia, para ocasiões profissionais e para clientes que procuram calçado com conforto e estética cuidada.', casual:'Casual', casualText:'Modelos práticos, confortáveis e fáceis de usar.', classic:'Clássico', classicText:'Linhas elegantes para uma presença discreta e profissional.', comfort:'Conforto', comfortText:'Formas e materiais pensados para bem-estar ao longo do dia.', exclusive:'Exclusivo', exclusiveText:'Propostas diferenciadas para marcas e clientes específicos.',
+        privateTag:'Desenvolvimentos privados', privateTitle:'Tem uma ideia de calçado? Nós ajudamos a torná-la produto.', privateLead:'Trabalhamos com briefings privados para desenvolver modelos exclusivos. O processo é adaptado ao cliente, ao tipo de produto, ao orçamento e ao posicionamento da marca.', briefing:'Briefing', briefingText:'Percebemos o conceito, o público, o estilo pretendido, os materiais e os objetivos do projeto.', development:'Desenvolvimento', developmentText:'Definimos forma, componentes, cores, acabamentos e soluções técnicas para o modelo.', sample:'Amostra', sampleText:'Criamos a primeira versão para analisar conforto, estética, proporções e ajustes necessários.', validation:'Validação', validationText:'Ajustamos detalhes e preparamos o produto para apresentação, produção ou comercialização.',
+        contactTag:'Contactos', contactTitle:'Fale connosco sobre a sua coleção ou <span>novo modelo</span>.', contactLead:'Envie-nos uma mensagem com a ideia do projeto, o tipo de calçado pretendido e a fase em que se encontra. Entraremos em contacto consigo.', phone:'Telefone', location:'Localização', name:'Nome', namePh:'O seu nome', orderType:'Tipo de pedido', option1:'Coleção própria KIARTE', option2:'Desenvolvimento privado', option3:'Amostra ou protótipo', option4:'Outro assunto', message:'Mensagem', messagePh:'Conte-nos brevemente o que pretende desenvolver...', send:'Enviar mensagem', sent:'Mensagem enviada', footerDesc:'Empresa portuguesa de calçado com coleção própria e desenvolvimento privado de modelos para marcas e clientes profissionais.', menu:'Menu', request:'Pedir informações', rights:'© 2026 KIARTE. Todos os direitos reservados.', made:'Calçado português'
+      },
+      en: {
+        navSobre: 'About', navServicos: 'What we do', navColecao: 'Collection', navPrivados: 'Private developments', navContactos: 'Contact',
+        eyebrow: 'Portuguese footwear', heroTitle: 'We create footwear with <span>identity</span>, comfort and detail.',
+        heroDesc: 'KIARTE is a footwear company dedicated to creating its own collection and private model development for brands, companies and professional clients. We combine experience, material selection and attention to finishing to turn ideas into products.',
+        btnColecao: 'View collection', btnModelo: 'Develop a model', heroCardTitle: 'Own collection and made-to-measure production.', heroCardText: 'From the first sketch to the final sample, we follow every stage with precision, proximity and focus on the result.',
+        sobreTag:'About KIARTE', sobreBoxTitle:'From idea to final product', sobreBoxText:'We work with a focus on comfort, aesthetics and production feasibility, ensuring solutions tailored to each client.', sobreTitle:'Footwear designed for brands that value <span>quality</span>.', sobreP1:'KIARTE develops footwear solutions with a practical, careful and close approach. We create models for our own collection and collaborate with clients looking to develop exclusive products adapted to their positioning and audience.', sobreP2:'We believe a good shoe starts with a good idea, but gains value through the details: choice of materials, comfort, shape, finishing and visual coherence.', sobreBtn:'Talk to KIARTE',
+        servTag:'What we do', servTitle:'Solutions for creating and developing <span>footwear</span>.', servLead:'We support the process from the initial concept to product preparation, whether for our own collection, private label or customised development.',
+        own:'Own collection', ownText:'KIARTE models designed for different styles, focused on quality, comfort and visual presence.', priv:'Private development', privText:'We create exclusive models for brands and companies, respecting the briefing, positioning, materials and commercial goals.', samples:'Samples and prototypes', samplesText:'We turn ideas into physical samples to validate shape, comfort, materials, colour and finishing.', materials:'Material selection', materialsText:'Support in choosing leathers, components, soles, linings and finishes suited to the intended model.', tech:'Technical follow-up', techText:'Monitoring the development stages to ensure consistency, feasibility and attention to detail.', brandProd:'Product for brands', brandProdText:'Tailored solutions for those who want to launch, renew or complement a footwear line.',
+        colTag:'Collection', colTitle:'An own collection with versatile and <span>current</span> lines.', colLead:'Our collection brings together models designed for everyday use, professional occasions and clients looking for footwear with comfort and refined aesthetics.', casual:'Casual', casualText:'Practical, comfortable and easy-to-wear models.', classic:'Classic', classicText:'Elegant lines for a discreet and professional presence.', comfort:'Comfort', comfortText:'Shapes and materials designed for wellbeing throughout the day.', exclusive:'Exclusive', exclusiveText:'Differentiated proposals for specific brands and clients.',
+        privateTag:'Private developments', privateTitle:'Do you have a footwear idea? We help turn it into a product.', privateLead:'We work with private briefs to develop exclusive models. The process is adapted to the client, product type, budget and brand positioning.', briefing:'Briefing', briefingText:'We understand the concept, audience, intended style, materials and project goals.', development:'Development', developmentText:'We define the shape, components, colours, finishes and technical solutions for the model.', sample:'Sample', sampleText:'We create the first version to analyse comfort, aesthetics, proportions and necessary adjustments.', validation:'Validation', validationText:'We adjust details and prepare the product for presentation, production or commercialisation.',
+        contactTag:'Contact', contactTitle:'Talk to us about your collection or <span>new model</span>.', contactLead:'Send us a message with your project idea, the type of footwear you want and the stage you are at. We will get back to you.', phone:'Phone', location:'Location', name:'Name', namePh:'Your name', orderType:'Request type', option1:'KIARTE own collection', option2:'Private development', option3:'Sample or prototype', option4:'Other subject', message:'Message', messagePh:'Briefly tell us what you want to develop...', send:'Send message', sent:'Message sent', footerDesc:'Portuguese footwear company with its own collection and private model development for brands and professional clients.', menu:'Menu', request:'Request information', rights:'© 2026 KIARTE. All rights reserved.', made:'Portuguese footwear'
+      },
+      es: {
+        navSobre: 'Sobre nosotros', navServicos: 'Qué hacemos', navColecao: 'Colección', navPrivados: 'Desarrollos privados', navContactos: 'Contactos',
+        eyebrow: 'Calzado portugués', heroTitle: 'Creamos calzado con <span>identidad</span>, comodidad y detalle.',
+        heroDesc: 'KIARTE es una empresa de calzado dedicada a la creación de colección propia y al desarrollo privado de modelos para marcas, empresas y clientes profesionales. Unimos experiencia, selección de materiales y atención al acabado para transformar ideas en producto.',
+        btnColecao: 'Ver colección', btnModelo: 'Desarrollar modelo', heroCardTitle: 'Colección propia y producción a medida.', heroCardText: 'Desde el primer diseño hasta la muestra final, acompañamos cada etapa con rigor, proximidad y foco en el resultado.',
+        sobreTag:'Sobre KIARTE', sobreBoxTitle:'De la idea al producto final', sobreBoxText:'Trabajamos con foco en la comodidad, la estética y la viabilidad de producción, garantizando soluciones ajustadas a cada cliente.', sobreTitle:'Calzado pensado para marcas que valoran la <span>calidad</span>.', sobreP1:'KIARTE desarrolla soluciones de calzado con un enfoque práctico, cuidado y cercano. Creamos modelos para nuestra propia colección y colaboramos con clientes que buscan desarrollar productos exclusivos, adaptados a su posicionamiento y a su público.', sobreP2:'Creemos que un buen zapato empieza con una buena idea, pero gana valor en los detalles: elección de materiales, comodidad, forma, acabado y coherencia visual.', sobreBtn:'Hablar con KIARTE',
+        servTag:'Qué hacemos', servTitle:'Soluciones para creación y desarrollo de <span>calzado</span>.', servLead:'Acompañamos el proceso desde el concepto inicial hasta la preparación del producto, ya sea para colección propia, marca privada o desarrollo personalizado.',
+        own:'Colección propia', ownText:'Modelos KIARTE pensados para diferentes estilos, con foco en la calidad, la comodidad y la presencia visual.', priv:'Desarrollo privado', privText:'Creamos modelos exclusivos para marcas y empresas, respetando briefing, posicionamiento, materiales y objetivos comerciales.', samples:'Muestras y prototipos', samplesText:'Transformamos ideas en muestras físicas para validar forma, comodidad, materiales, color y acabado.', materials:'Selección de materiales', materialsText:'Apoyo en la elección de pieles, componentes, suelas, forros y acabados adecuados al modelo pretendido.', tech:'Seguimiento técnico', techText:'Monitorización de las etapas de desarrollo para garantizar coherencia, viabilidad y atención al detalle.', brandProd:'Producto para marca', brandProdText:'Soluciones ajustadas para quien pretende lanzar, renovar o complementar una línea de calzado.',
+        colTag:'Colección', colTitle:'Una colección propia con líneas versátiles y <span>actuales</span>.', colLead:'Nuestra colección reúne modelos pensados para el día a día, para ocasiones profesionales y para clientes que buscan calzado con comodidad y estética cuidada.', casual:'Casual', casualText:'Modelos prácticos, cómodos y fáciles de usar.', classic:'Clásico', classicText:'Líneas elegantes para una presencia discreta y profesional.', comfort:'Comodidad', comfortText:'Formas y materiales pensados para el bienestar durante todo el día.', exclusive:'Exclusivo', exclusiveText:'Propuestas diferenciadas para marcas y clientes específicos.',
+        privateTag:'Desarrollos privados', privateTitle:'¿Tiene una idea de calzado? Le ayudamos a convertirla en producto.', privateLead:'Trabajamos con briefings privados para desarrollar modelos exclusivos. El proceso se adapta al cliente, al tipo de producto, al presupuesto y al posicionamiento de la marca.', briefing:'Briefing', briefingText:'Entendemos el concepto, el público, el estilo deseado, los materiales y los objetivos del proyecto.', development:'Desarrollo', developmentText:'Definimos forma, componentes, colores, acabados y soluciones técnicas para el modelo.', sample:'Muestra', sampleText:'Creamos la primera versión para analizar comodidad, estética, proporciones y ajustes necesarios.', validation:'Validación', validationText:'Ajustamos detalles y preparamos el producto para presentación, producción o comercialización.',
+        contactTag:'Contactos', contactTitle:'Hable con nosotros sobre su colección o <span>nuevo modelo</span>.', contactLead:'Envíenos un mensaje con la idea del proyecto, el tipo de calzado deseado y la fase en la que se encuentra. Nos pondremos en contacto.', phone:'Teléfono', location:'Ubicación', name:'Nombre', namePh:'Su nombre', orderType:'Tipo de pedido', option1:'Colección propia KIARTE', option2:'Desarrollo privado', option3:'Muestra o prototipo', option4:'Otro asunto', message:'Mensaje', messagePh:'Cuéntenos brevemente qué desea desarrollar...', send:'Enviar mensaje', sent:'Mensaje enviado', footerDesc:'Empresa portuguesa de calzado con colección propia y desarrollo privado de modelos para marcas y clientes profesionales.', menu:'Menú', request:'Solicitar información', rights:'© 2026 KIARTE. Todos los derechos reservados.', made:'Calzado portugués'
+      }
+    };
+
+    const selectors = [
+      ['navSobre', 'a[href="#sobre"]'], ['navServicos', 'a[href="#servicos"]'], ['navColecao', 'a[href="#colecao"]'], ['navPrivados', 'a[href="#privados"]'], ['navContactos', '.nav-cta'],
+      ['eyebrow', '.eyebrow'], ['heroTitle', '.hero-title'], ['heroDesc', '.hero-desc'], ['btnColecao', '.hero-buttons .btn-primary'], ['btnModelo', '.hero-buttons .btn-outline'], ['heroCardTitle', '.hero-card h2'], ['heroCardText', '.hero-card p'],
+      ['sobreTag', '#sobre .section-tag'], ['sobreBoxTitle', '#sobre .floating-box h3'], ['sobreBoxText', '#sobre .floating-box p'], ['sobreTitle', '#sobre .title'], ['sobreP1', '#sobre .split-text p:nth-of-type(1)'], ['sobreP2', '#sobre .split-text p:nth-of-type(2)'], ['sobreBtn', '#sobre .btn-primary'],
+      ['servTag', '#servicos .section-tag'], ['servTitle', '#servicos .title'], ['servLead', '#servicos .lead'],
+      ['colTag', '#colecao .section-tag'], ['colTitle', '#colecao .title'], ['colLead', '#colecao .lead'], ['privateTag', '#privados .section-tag'], ['privateTitle', '#privados .title'], ['privateLead', '#privados .lead'],
+      ['contactTag', '#contactos .section-tag'], ['contactTitle', '#contactos .title'], ['contactLead', '#contactos .lead'], ['footerDesc', '.footer-brand p'], ['rights', '.footer-bottom span:first-child'], ['made', '.footer-bottom span:last-child']
+    ];
+    const cardKeys = [['own','ownText'],['priv','privText'],['samples','samplesText'],['materials','materialsText'],['tech','techText'],['brandProd','brandProdText']];
+    const colKeys = [['casual','casualText'],['classic','classicText'],['comfort','comfortText'],['exclusive','exclusiveText']];
+    const stepKeys = [['briefing','briefingText'],['development','developmentText'],['sample','sampleText'],['validation','validationText']];
+    function setLang(lang){
+      const t = translations[lang] || translations.pt;
+      document.documentElement.lang = lang === 'pt' ? 'pt-PT' : lang;
+      selectors.forEach(([key, sel]) => { document.querySelectorAll(sel).forEach(el => { if(t[key]) el.innerHTML = t[key]; }); });
+      document.querySelectorAll('#servicos .card').forEach((el,i)=>{ const k=cardKeys[i]; if(k){ el.querySelector('h3').innerHTML=t[k[0]]; el.querySelector('p').innerHTML=t[k[1]]; }});
+      document.querySelectorAll('#colecao .collection-item').forEach((el,i)=>{ const k=colKeys[i]; if(k){ el.querySelector('h3').innerHTML=t[k[0]]; el.querySelector('p').innerHTML=t[k[1]]; }});
+      document.querySelectorAll('#privados .step').forEach((el,i)=>{ const k=stepKeys[i]; if(k){ el.querySelector('h3').innerHTML=t[k[0]]; el.querySelector('p').innerHTML=t[k[1]]; }});
+      document.querySelectorAll('.contact-item span')[1].innerHTML = t.phone;
+      document.querySelectorAll('.contact-item span')[2].innerHTML = t.location;
+      document.querySelector('label[for="nome"]').innerHTML = t.name; document.getElementById('nome').placeholder = t.namePh;
+      document.querySelector('label[for="tipo"]').innerHTML = t.orderType;
+      document.querySelector('label[for="mensagem"]').innerHTML = t.message; document.getElementById('mensagem').placeholder = t.messagePh;
+      document.querySelectorAll('#tipo option').forEach((o,i)=>{ o.innerHTML = [t.option1,t.option2,t.option3,t.option4][i]; });
+      document.querySelector('button[type="submit"]').innerHTML = t.send;
+      document.querySelectorAll('.footer-col h4')[0].innerHTML = t.menu; document.querySelectorAll('.footer-col h4')[1].innerHTML = t.navContactos;
+      document.querySelector('.footer-col a[href="#contactos"]').innerHTML = t.request;
+      document.querySelectorAll('.lang-link').forEach(b=>b.classList.toggle('active', b.dataset.lang === lang));
+      localStorage.setItem('kiarteLang', lang);
+    }
+    document.querySelectorAll('.lang-link').forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.lang)));
+    setLang(localStorage.getItem('kiarteLang') || 'pt');
   </script>
 </body>
 </html>
