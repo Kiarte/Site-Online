@@ -77,8 +77,10 @@
     .social-link { display:inline-flex; align-items:center; justify-content:center; color:#6a6a6a; text-decoration:none; transition:color .25s ease, transform .2s ease; }
     .social-link:hover { color:var(--blue); transform:translateY(-1px); }
     .social-link svg { width:18px; height:18px; fill:currentColor; display:block; }
-    .lang-link { border:0; background:transparent; color:#17314f; font:inherit; font-size:.78rem; font-weight:700; cursor:pointer; padding:.1rem .12rem; }
-    .lang-link.active, .lang-link:hover { color:var(--blue); }
+    .lang-link { display:inline-flex; align-items:center; justify-content:center; border:0; background:transparent; cursor:pointer; padding:.1rem .12rem; opacity:.75; transition:opacity .2s ease, transform .2s ease; }
+    .flag-icon { width:18px; height:12px; display:block; border-radius:1px; box-shadow:0 0 0 .5px rgba(0,0,0,.12); }
+    .lang-link.active, .lang-link:hover { opacity:1; transform:translateY(-1px); }
+    .lang-link:focus-visible { outline:2px solid var(--blue); outline-offset:3px; border-radius:2px; }
     .sep { color:#b8b8b8; font-weight:400; }
 
     .nav-cta {
@@ -462,26 +464,7 @@
       .stat { padding: 2rem 1rem; }
     }
 
-    /* Canal de denúncias - integração visual coerente com o site KIARTE */
-    .nav-legal-link { color: var(--blue-dark) !important; }
-    .nav-legal-link:hover { color: var(--blue) !important; }
     nav ul { gap: clamp(.65rem, 1.35vw, 1.8rem); }
-    .ethics-section {
-      display: grid; grid-template-columns: 1.3fr .7fr; align-items: center;
-      gap: clamp(2rem, 4vw, 5rem);
-      background: linear-gradient(130deg, #f6faff 0%, #eaf5ff 100%);
-    }
-    .ethics-section .lead { max-width: 690px; margin-bottom: 1.8rem; }
-    .ethics-art {
-      background: linear-gradient(155deg, #2f96f1, #0b4f91);
-      border-radius: 34px; min-height: 300px; display: flex;
-      flex-direction: column; align-items: center; justify-content: center;
-      gap: 1.5rem; padding: 2rem; box-shadow: var(--shadow);
-    }
-    .ethics-emblem { width: 126px; height: 126px; }
-    .ethics-emblem svg { width: 100%; height: 100%; }
-    .ethics-art span { text-align: center; font-size: .72rem; letter-spacing: .1em;
-      text-transform: uppercase; color: rgba(255,255,255,.85); font-weight: 700; line-height: 1.65; }
     @media (max-width: 1210px) {
       nav ul { display:none; position:absolute; left:0; right:0; top:68px;
         flex-direction:column; align-items:flex-start; gap:1.35rem; background:var(--white);
@@ -489,18 +472,12 @@
       nav ul.open { display:flex; }
       .hamburger { display:flex; }
     }
-    /* A navegação ganhou uma ligação; no tamanho intermédio passa a menu móvel. */
     @media (min-width: 721px) and (max-width: 1300px) {
       nav ul { display:none; position:absolute; left:0; right:0; top:72px; flex-direction:column; align-items:flex-start; background:var(--white); padding:1.2rem 6vw; border-bottom:1px solid var(--line); }
       nav ul.open { display:flex; }
       .hamburger {display:flex;}
     }
     .contact-notice {margin: .85rem 0 0;color:var(--muted);font-size:.79rem;line-height:1.6;}
-    @media (max-width: 850px) {
-      .ethics-section { grid-template-columns: 1fr; }
-      .ethics-art { min-height: 220px; }
-      .ethics-emblem { width: 84px; height: 84px; }
-    }
   </style>
 </head>
 <body>
@@ -513,7 +490,6 @@
       <li><a href="#servicos">O que fazemos</a></li>
       <li><a href="#colecao">Coleção</a></li>
       <li><a href="#privados">Desenvolvimentos privados</a></li>
-      <li><a href="canal-denuncias.html" class="nav-legal-link">Canal de denúncias</a></li>
       <li><a href="#contactos" class="nav-cta">Contactos</a></li>
     </ul>
     <div class="nav-right">
@@ -524,10 +500,10 @@
         <a class="social-link" href="https://www.facebook.com/kiarteshoes/" target="_blank" rel="noopener" aria-label="Facebook KIARTE">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.84c0-2.52 1.49-3.91 3.77-3.91 1.09 0 2.23.2 2.23.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.08 22 12.06Z"/></svg>
         </a>
-        <button class="lang-link active" type="button" data-lang="pt">PT</button><span class="sep">|</span>
-        <button class="lang-link" type="button" data-lang="en">EN</button><span class="sep">|</span>
-        <button class="lang-link" type="button" data-lang="fr">FR</button><span class="sep">|</span>
-        <button class="lang-link" type="button" data-lang="es">ES</button>
+        <button class="lang-link active" type="button" data-lang="pt" aria-label="Português" title="Português" aria-pressed="true"><svg class="flag-icon" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><rect width="24" height="40" fill="#006600"/><rect x="24" width="36" height="40" fill="#ff0000"/><circle cx="24" cy="20" r="10" fill="#ffcc00"/><circle cx="24" cy="20" r="7" fill="none" stroke="#fff" stroke-width="1"/><path d="M20 14h8v10l-4 3-4-3Z" fill="#fff" stroke="#d00020" stroke-width="1.2"/><g fill="#2354a4"><circle cx="22" cy="17" r="1"/><circle cx="26" cy="17" r="1"/><circle cx="24" cy="21" r="1"/><circle cx="21.5" cy="23" r=".8"/><circle cx="26.5" cy="23" r=".8"/></g></svg></button><span class="sep" aria-hidden="true">|</span>
+        <button class="lang-link" type="button" data-lang="en" aria-label="Inglês" title="Inglês" aria-pressed="false"><svg class="flag-icon" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><rect width="60" height="40" fill="#012169"/><path d="M0 0 60 40M60 0 0 40" stroke="#fff" stroke-width="10"/><path d="M0 0 60 40M60 0 0 40" stroke="#c8102e" stroke-width="4"/><path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="15"/><path d="M30 0v40M0 20h60" stroke="#c8102e" stroke-width="8"/></svg></button><span class="sep" aria-hidden="true">|</span>
+        <button class="lang-link" type="button" data-lang="fr" aria-label="Francês" title="Francês" aria-pressed="false"><svg class="flag-icon" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><rect width="20" height="40" fill="#002395"/><rect x="20" width="20" height="40" fill="#fff"/><rect x="40" width="20" height="40" fill="#ed2939"/></svg></button><span class="sep" aria-hidden="true">|</span>
+        <button class="lang-link" type="button" data-lang="es" aria-label="Espanhol" title="Espanhol" aria-pressed="false"><svg class="flag-icon" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><rect width="60" height="40" fill="#aa151b"/><rect y="10" width="60" height="20" fill="#f1bf00"/><rect x="16" y="15" width="6" height="11" rx="1" fill="#b42833"/><rect x="17.5" y="17" width="3" height="6" fill="#fff"/><path d="M16 15h6" stroke="#c59e40" stroke-width="2"/></svg></button>
       </div>
       <button class="hamburger" id="menuBtn" aria-label="Abrir menu"><span></span><span></span><span></span></button>
     </div>
@@ -645,20 +621,6 @@
   </section>
 
 
-  <!-- Ponto de entrada público; as denúncias não são recebidas ou guardadas no GitHub Pages. -->
-  <section id="integridade" class="ethics-section" aria-labelledby="ethicsTitle">
-    <div class="ethics-content">
-      <span class="tag">Ética e transparência</span>
-      <h2 id="ethicsTitle" class="title">A integridade faz parte do nosso <span>compromisso</span>.</h2>
-      <p class="lead">Disponibilizamos informação sobre o Canal de Denúncias da KIARTE, destinado à comunicação de infrações conhecidas no âmbito de uma atividade profissional. Consulte as condições de utilização e o acesso ao sistema reservado.</p>
-      <a class="btn btn-primary" href="canal-denuncias.html">Conhecer o canal de denúncias</a>
-    </div>
-    <div class="ethics-art" aria-hidden="true">
-      <div class="ethics-emblem"><svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 8 83 21v25c0 23-13 38-33 47C30 84 17 69 17 46V21L50 8Z" stroke="white" stroke-width="4.5"/><path d="m32 49 12 12 25-27" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <span>Confidencialidade · Responsabilidade · Integridade</span>
-    </div>
-  </section>
-
   <section id="contactos">
     <div>
       <span class="tag">Contactos</span>
@@ -770,7 +732,7 @@
 
     const translations = {
       pt: {
-        navSobre: 'Sobre', navServicos: 'O que fazemos', navColecao: 'Coleção', navPrivados: 'Desenvolvimentos privados', navContactos: 'Contactos', navCanal:'Canal de denúncias', footerCanal:'Canal de denúncias',
+        navSobre: 'Sobre', navServicos: 'O que fazemos', navColecao: 'Coleção', navPrivados: 'Desenvolvimentos privados', navContactos: 'Contactos', footerCanal:'Canal de denúncias',
         eyebrow: 'Calçado português', heroTitle: 'Criamos calçado com <span>identidade</span>, conforto e detalhe.',
         heroDesc: 'A KIARTE é uma empresa de calçado dedicada à criação de coleção própria e ao desenvolvimento privado de modelos para marcas, empresas e clientes profissionais. Unimos experiência, seleção de materiais e atenção ao acabamento para transformar ideias em produto.',
         btnColecao: 'Ver coleção', btnModelo: 'Desenvolver modelo', heroCardTitle: 'Coleção própria e produção à medida.', heroCardText: 'Do desenho inicial à amostra final, acompanhamos cada etapa com rigor, proximidade e foco no resultado.',
@@ -782,7 +744,7 @@
         contactTag:'Contactos', contactTitle:'Fale connosco sobre a sua coleção ou <span>novo modelo</span>.', contactLead:'Envie-nos uma mensagem com a ideia do projeto, o tipo de calçado pretendido e a fase em que se encontra. Entraremos em contacto consigo.', phone:'Telefone', location:'Localização', name:'Nome', namePh:'O seu nome', orderType:'Tipo de pedido', option1:'Coleção própria KIARTE', option2:'Desenvolvimento privado', option3:'Amostra ou protótipo', option4:'Outro assunto', message:'Mensagem', messagePh:'Conte-nos brevemente o que pretende desenvolver...', send:'Enviar mensagem', sent:'Mensagem enviada', footerDesc:'Empresa portuguesa de calçado com coleção própria e desenvolvimento privado de modelos para marcas e clientes profissionais.', menu:'Menu', request:'Pedir informações', rights:'© 2026 KIARTE. Todos os direitos reservados.', made:'Calçado português', mapText:'Ver localização KIARTE no Google Maps', mapOpen:'Abrir mapa'
       },
       en: {
-        navSobre: 'About', navServicos: 'What we do', navColecao: 'Collection', navPrivados: 'Private developments', navContactos: 'Contact', navCanal:'Whistleblowing', footerCanal:'Whistleblowing',
+        navSobre: 'About', navServicos: 'What we do', navColecao: 'Collection', navPrivados: 'Private developments', navContactos: 'Contact', footerCanal:'Whistleblowing',
         eyebrow: 'Portuguese footwear', heroTitle: 'We create footwear with <span>identity</span>, comfort and detail.',
         heroDesc: 'KIARTE is a footwear company dedicated to creating its own collection and private model development for brands, companies and professional clients. We combine experience, material selection and attention to finishing to turn ideas into products.',
         btnColecao: 'View collection', btnModelo: 'Develop a model', heroCardTitle: 'Own collection and made-to-measure production.', heroCardText: 'From the first sketch to the final sample, we follow every stage with precision, proximity and focus on the result.',
@@ -794,7 +756,7 @@
         contactTag:'Contact', contactTitle:'Talk to us about your collection or <span>new model</span>.', contactLead:'Send us a message with your project idea, the type of footwear you want and the stage you are at. We will get back to you.', phone:'Phone', location:'Location', name:'Name', namePh:'Your name', orderType:'Request type', option1:'KIARTE own collection', option2:'Private development', option3:'Sample or prototype', option4:'Other subject', message:'Message', messagePh:'Briefly tell us what you want to develop...', send:'Send message', sent:'Message sent', footerDesc:'Portuguese footwear company with its own collection and private model development for brands and professional clients.', menu:'Menu', request:'Request information', rights:'© 2026 KIARTE. All rights reserved.', made:'Portuguese footwear', mapText:'View KIARTE location on Google Maps', mapOpen:'Open map'
       },
       fr: {
-        navSobre: 'À propos', navServicos: 'Ce que nous faisons', navColecao: 'Collection', navPrivados: 'Développements privés', navContactos: 'Contacts', navCanal:'Signalement', footerCanal:'Signalement',
+        navSobre: 'À propos', navServicos: 'Ce que nous faisons', navColecao: 'Collection', navPrivados: 'Développements privés', navContactos: 'Contacts', footerCanal:'Signalement',
         eyebrow: 'Chaussure portugaise', heroTitle: 'Nous créons des chaussures avec <span>identité</span>, confort et détail.',
         heroDesc: 'KIARTE est une entreprise de chaussures dédiée à la création de sa propre collection et au développement privé de modèles pour des marques, entreprises et clients professionnels. Nous réunissons expérience, sélection des matériaux et attention aux finitions pour transformer les idées en produits.',
         btnColecao: 'Voir la collection', btnModelo: 'Développer un modèle', heroCardTitle: 'Collection propre et production sur mesure.', heroCardText: 'Du premier dessin à l’échantillon final, nous accompagnons chaque étape avec rigueur, proximité et attention au résultat.',
@@ -806,7 +768,7 @@
         contactTag:'Contacts', contactTitle:'Parlez-nous de votre collection ou de votre <span>nouveau modèle</span>.', contactLead:'Envoyez-nous un message avec votre idée de projet, le type de chaussure souhaité et l’étape où vous vous trouvez. Nous vous contacterons rapidement.', phone:'Téléphone', location:'Localisation', name:'Nom', namePh:'Votre nom', orderType:'Type de demande', option1:'Collection propre KIARTE', option2:'Développement privé', option3:'Échantillon ou prototype', option4:'Autre sujet', message:'Message', messagePh:'Expliquez-nous brièvement ce que vous souhaitez développer...', send:'Envoyer le message', sent:'Message envoyé', footerDesc:'Entreprise portugaise de chaussures avec collection propre et développement privé de modèles pour marques et clients professionnels.', menu:'Menu', request:'Demander des informations', rights:'© 2026 KIARTE. Tous droits réservés.', made:'Chaussure portugaise', mapText:'Voir la localisation KIARTE sur Google Maps', mapOpen:'Ouvrir la carte'
       },
       es: {
-        navSobre: 'Sobre nosotros', navServicos: 'Qué hacemos', navColecao: 'Colección', navPrivados: 'Desarrollos privados', navContactos: 'Contactos', navCanal:'Canal de denuncias', footerCanal:'Canal de denuncias',
+        navSobre: 'Sobre nosotros', navServicos: 'Qué hacemos', navColecao: 'Colección', navPrivados: 'Desarrollos privados', navContactos: 'Contactos', footerCanal:'Canal de denuncias',
         eyebrow: 'Calzado portugués', heroTitle: 'Creamos calzado con <span>identidad</span>, comodidad y detalle.',
         heroDesc: 'KIARTE es una empresa de calzado dedicada a la creación de colección propia y al desarrollo privado de modelos para marcas, empresas y clientes profesionales. Unimos experiencia, selección de materiales y atención al acabado para transformar ideas en producto.',
         btnColecao: 'Ver colección', btnModelo: 'Desarrollar modelo', heroCardTitle: 'Colección propia y producción a medida.', heroCardText: 'Desde el primer diseño hasta la muestra final, acompañamos cada etapa con rigor, proximidad y foco en el resultado.',
@@ -820,19 +782,8 @@
     };
 
 
-    const ethicsTranslations = {
-      pt: {tag:'Ética e transparência', title:'A integridade faz parte do nosso <span>compromisso</span>.',
-        lead:'Disponibilizamos informação sobre o Canal de Denúncias da KIARTE, destinado à comunicação de infrações conhecidas no âmbito de uma atividade profissional. Consulte as condições de utilização e o acesso ao sistema reservado.', button:'Conhecer o canal de denúncias'},
-      en: {tag:'Ethics and transparency', title:'Integrity is part of our <span>commitment</span>.',
-        lead:'Find information about KIARTE’s whistleblowing channel for reporting violations identified in a professional context. Read about its purpose and access the separate reporting system.', button:'Learn about whistleblowing'},
-      fr: {tag:'Éthique et transparence', title:'L’intégrité fait partie de notre <span>engagement</span>.',
-        lead:'Consultez les informations relatives au canal de signalement de KIARTE, destiné à signaler des infractions constatées dans un contexte professionnel, ainsi que l’accès à la plateforme distincte.', button:'Découvrir le canal de signalement'},
-      es: {tag:'Ética y transparencia', title:'La integridad forma parte de nuestro <span>compromiso</span>.',
-        lead:'Consulte la información del canal de denuncias de KIARTE, destinado a comunicar infracciones conocidas en el ámbito profesional, y el acceso al sistema independiente.', button:'Conocer el canal de denuncias'}
-    };
-
     const selectors = [
-      ['navSobre', 'a[href="#sobre"]'], ['navServicos', 'a[href="#servicos"]'], ['navColecao', 'a[href="#colecao"]'], ['navPrivados', 'a[href="#privados"]'], ['navContactos', '.nav-cta'], ['navCanal', 'nav a[href="canal-denuncias.html"]'], ['footerCanal', 'footer a[href="canal-denuncias.html"]'],
+      ['navSobre', 'a[href="#sobre"]'], ['navServicos', 'a[href="#servicos"]'], ['navColecao', 'a[href="#colecao"]'], ['navPrivados', 'a[href="#privados"]'], ['navContactos', '.nav-cta'], ['footerCanal', 'footer a[href="canal-denuncias.html"]'],
       ['eyebrow', '.eyebrow'], ['heroTitle', '.hero-title'], ['heroDesc', '.hero-desc'], ['btnColecao', '.hero-actions .btn-primary'], ['btnModelo', '.hero-actions .btn-outline'], ['heroCardTitle', '.hero-card h2'], ['heroCardText', '.hero-card p'],
       ['sobreTag', '#sobre .tag'], ['sobreBoxTitle', '#sobre .about-box h3'], ['sobreBoxText', '#sobre .about-box p'], ['sobreTitle', '#sobre .title'], ['sobreP1', '#sobre .about-text p:nth-of-type(1)'], ['sobreP2', '#sobre .about-text p:nth-of-type(2)'], ['sobreBtn', '#sobre .btn-primary'],
       ['servTag', '#servicos .tag'], ['servTitle', '#servicos .title'], ['servLead', '#servicos .lead'], ['consTitle', '#servicos .construction-label'],
@@ -867,15 +818,11 @@
       document.querySelector('.footer-col a[href="#contactos"]').innerHTML = t.request;
       if(document.querySelector('.map-link strong')) document.querySelector('.map-link strong').innerHTML = t.mapText || 'Ver localização KIARTE no Google Maps';
       if(document.querySelector('.map-link span')) document.querySelector('.map-link span').innerHTML = t.mapOpen || 'Abrir mapa';
-      const et = ethicsTranslations[lang] || ethicsTranslations.pt;
-      const ethics = document.querySelector('#integridade');
-      if (ethics) {
-        ethics.querySelector('.tag').textContent = et.tag;
-        ethics.querySelector('.title').innerHTML = et.title;
-        ethics.querySelector('.lead').textContent = et.lead;
-        ethics.querySelector('.btn').textContent = et.button;
-      }
-      document.querySelectorAll('.lang-link').forEach(b=>b.classList.toggle('active', b.dataset.lang === lang));
+      document.querySelectorAll('.lang-link').forEach(b => {
+        const isActive = b.dataset.lang === lang;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', String(isActive));
+      });
       localStorage.setItem('kiarteLang', lang);
     }
     document.querySelectorAll('.lang-link').forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.lang)));
