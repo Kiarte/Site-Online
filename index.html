@@ -14,29 +14,40 @@
   <meta property="og:url" content="https://kiarte.pt/" />
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "KIARTE",
-    "url": "https://kiarte.pt/",
-    "description": "Fabricante português de calçado com coleção própria, desenvolvimento privado de modelos e foco em soluções certificadas.",
-    "keywords": [
-      "fabricante de calçado certificado",
-      "fornecedor de calçado certificado",
-      "ICS Audits",
-      "Higg FEM",
-      "FSC",
-      "LWG",
-      "fabricante de calçado Portugal"
-    ],
-    "makesOffer": {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Fabrico e desenvolvimento de calçado",
-        "description": "Coleção própria e desenvolvimento privado de calçado com foco em qualidade, conforto, materiais e certificações."
-      }
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "KIARTE",
+  "url": "https://kiarte.pt/",
+  "description": "Fabricante português de calçado com coleção própria, desenvolvimento privado de modelos e foco em soluções certificadas.",
+  "keywords": [
+    "fabricante de calçado certificado",
+    "fornecedor de calçado certificado",
+    "ICS Audits",
+    "Higg FEM",
+    "FSC",
+    "LWG",
+    "fabricante de calçado Portugal"
+  ],
+  "makesOffer": {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Service",
+      "name": "Fabrico e desenvolvimento de calçado",
+      "description": "Coleção própria e desenvolvimento privado de calçado com foco em qualidade, conforto, materiais e certificações."
     }
+  },
+  "legalName": "Manuel Leite de Melo, Lda.",
+  "taxID": "501911359",
+  "telephone": "+351 255 340 320",
+  "email": "kiarte@kiarte.pt",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rua do Roço, 81",
+    "postalCode": "4650-606",
+    "addressLocality": "Torrados, Felgueiras",
+    "addressCountry": "PT"
   }
+}
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -423,21 +434,94 @@
     .cert-card-body { padding: 1.5rem; }
     .cert-card h3 { font-size: 1.18rem; margin-bottom: .65rem; color: var(--blue-dark); }
     .cert-card p { color: var(--muted); line-height: 1.7; }
+    /* CONTACTOS: fotografias, mapa, dados e formulário em sequência vertical */
     #contactos {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 2.2rem;
       background: var(--offwhite);
     }
-    .contact-list { display: grid; gap: 1rem; margin-top: 2rem; }
-    .contact-item {
+    .contact-heading { max-width: 900px; }
+    .contact-heading .title { margin-bottom: 1rem; }
+    .company-gallery { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1.35rem; }
+    .company-photo {
+      position: relative;
+      aspect-ratio: 1.55/1;
+      overflow: hidden;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #eaf5ff, #c3dff6);
+      border: 1px solid var(--line);
+      box-shadow: 0 15px 40px rgba(11,79,145,.09);
+    }
+    .company-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .company-photo-placeholder {
+      display: none;
+      position: absolute;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+      color: var(--blue-dark);
+      font-weight: 700;
+    }
+    .company-photo.is-empty img { display: none; }
+    .company-photo.is-empty .company-photo-placeholder { display: flex; }
+    .contact-map {
+      overflow: hidden;
       background: var(--white);
       border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 1.2rem;
+      border-radius: 30px;
+      box-shadow: 0 18px 48px rgba(11,79,145,.09);
     }
-    .contact-item span { display: block; color: var(--blue); font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .25rem; }
-    .contact-item p { color: var(--text); font-weight: 600; }
+    .contact-map iframe { display: block; width: 100%; height: clamp(380px, 48vw, 600px); border: 0; }
+    .map-link {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: var(--blue-dark);
+      text-decoration: none;
+      padding: 1.05rem 1.5rem;
+    }
+    .map-link span { color: var(--blue); font-weight: 700; }
+    .company-details {
+      width: 100%;
+      max-width: 1050px;
+      margin: 0 auto;
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      box-shadow: 0 15px 42px rgba(11,79,145,.06);
+    }
+    .company-detail { padding: 1.2rem 1.8rem; }
+    .company-detail + .company-detail { border-top: 1px solid var(--line); }
+    .detail-label {
+      display: block;
+      margin-bottom: .35rem;
+      color: var(--blue);
+      font-size: .77rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .company-detail p { color: var(--text); line-height: 1.65; font-weight: 600; overflow-wrap: anywhere; }
+    .company-detail a { text-decoration: none; }
+    .company-detail a:hover { color: var(--blue); text-decoration: underline; }
+    .contact-form-intro { width: 100%; max-width: 900px; margin: 1.25rem auto 0; }
+    .contact-form-intro h3 { font-size: clamp(1.8rem, 3.3vw, 2.8rem); letter-spacing: -.04em; margin-bottom: .6rem; }
+    .contact-form-intro p { color: var(--muted); line-height: 1.7; }
+    #contactos .contact-form { width: 100%; max-width: 900px; margin: 0 auto; }
+    @media (max-width: 760px) {
+      .company-gallery { grid-template-columns: 1fr; gap: 1rem; }
+      .company-photo { aspect-ratio: 1.7/1; }
+      .contact-map iframe { height: 370px; }
+      .company-detail { padding: 1rem 1.1rem; }
+      #contactos .contact-form { padding: 1.3rem; }
+    }
     form {
       background: var(--white);
       border: 1px solid var(--line);
@@ -697,34 +781,60 @@
   </section>
 
 
-  <section id="contactos">
-    <div>
+  <section id="contactos" aria-labelledby="contactos-titulo">
+    <div class="contact-heading">
       <span class="tag">Contactos</span>
-      <h2 class="title">Fale connosco sobre a sua coleção ou <span>novo modelo</span>.</h2>
-      <p class="lead">Envie-nos uma mensagem com a ideia do projeto, o tipo de calçado pretendido e a fase em que se encontra. Entraremos em contacto consigo.</p>
-      <div class="contact-list">
-        <div class="contact-item"><span>Email</span><p>kiarte@kiarte.pt</p></div>
-        <div class="contact-item"><span>Telefone</span><p>+351 255 340 320</p></div>
-        <div class="contact-item"><span>Localização</span><p>Rua do Roço 81, 4650-606 Torrados, PORTUGAL</p></div>
-      </div>
-      <div class="map-block">
-        <iframe
-          title="Localização KIARTE no Google Maps"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=Rua%20do%20Ro%C3%A7o%2081%2C%204650-606%20Torrados%2C%20Portugal&output=embed">
-        </iframe>
-        <a class="map-link" href="https://maps.app.goo.gl/haUgYPvA192MDRLx9" target="_blank" rel="noopener">
-          <strong>Ver localização KIARTE no Google Maps</strong>
-          <span>Abrir mapa</span>
-        </a>
-      </div>
-
+      <h2 class="title" id="contactos-titulo">Onde <span>estamos</span>.</h2>
+      <p class="lead">Conheça as instalações da KIARTE em Torrados, Felgueiras, e saiba como entrar em contacto connosco.</p>
     </div>
-    <form onsubmit="handleSubmit(event)">
+
+    <!-- Colocar imagens/empresa-1.jpg, empresa-2.jpg e empresa-3.jpg no GitHub. -->
+    <div class="company-gallery" aria-label="Fotografias da KIARTE">
+      <figure class="company-photo">
+        <img src="imagens/empresa-1.jpg" alt="Fotografia 1 da KIARTE" loading="lazy">
+        <figcaption class="company-photo-placeholder">Fotografia 1</figcaption>
+      </figure>
+      <figure class="company-photo">
+        <img src="imagens/empresa-2.jpg" alt="Fotografia 2 da KIARTE" loading="lazy">
+        <figcaption class="company-photo-placeholder">Fotografia 2</figcaption>
+      </figure>
+      <figure class="company-photo">
+        <img src="imagens/empresa-3.jpg" alt="Fotografia 3 da KIARTE" loading="lazy">
+        <figcaption class="company-photo-placeholder">Fotografia 3</figcaption>
+      </figure>
+    </div>
+
+    <div class="contact-map">
+      <iframe
+        title="Localização KIARTE no Google Maps"
+        src="https://www.google.com/maps?q=Rua%20do%20Ro%C3%A7o%2081%2C%204650-606%20Torrados%2C%20Portugal&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen>
+      </iframe>
+      <a class="map-link" href="https://maps.app.goo.gl/haUgYPvA192MDRLx9" target="_blank" rel="noopener noreferrer">
+        <strong>Ver localização KIARTE no Google Maps</strong>
+        <span>Abrir mapa</span>
+      </a>
+    </div>
+
+    <div class="company-details" aria-label="Dados de contacto da KIARTE">
+      <div class="company-detail"><span class="detail-label">Nome da empresa</span><p>KIARTE — Manuel Leite de Melo, Lda.</p></div>
+      <div class="company-detail"><span class="detail-label">Morada</span><p>Rua do Roço, n.º 81, 4650-606 Torrados, Felgueiras, Portugal</p></div>
+      <div class="company-detail"><span class="detail-label">Email</span><p><a href="mailto:kiarte@kiarte.pt">kiarte@kiarte.pt</a></p></div>
+      <div class="company-detail"><span class="detail-label">Telefone</span><p><a href="tel:+351255340320">+351 255 340 320</a></p></div>
+      <div class="company-detail"><span class="detail-label">N.º de contribuinte</span><p>501 911 359</p></div>
+    </div>
+
+    <div class="contact-form-intro">
+      <span class="tag">Enviar pedido</span>
+      <h3>Fale connosco</h3>
+      <p>Preencha os campos abaixo para preparar a sua mensagem à KIARTE.</p>
+    </div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
       <div class="row">
-        <div><label for="nome">Nome</label><input id="nome" type="text" placeholder="O seu nome" required></div>
-        <div><label for="email">Email</label><input id="email" type="email" placeholder="email@exemplo.com" required></div>
+        <div><label for="nome">Nome</label><input id="nome" type="text" autocomplete="name" placeholder="O seu nome" required></div>
+        <div><label for="email">Email</label><input id="email" type="email" autocomplete="email" placeholder="email@exemplo.com" required></div>
       </div>
       <label for="tipo">Tipo de pedido</label>
       <select id="tipo">
@@ -734,7 +844,7 @@
         <option>Outro assunto</option>
       </select>
       <label for="mensagem">Mensagem</label>
-      <textarea id="mensagem" placeholder="Conte-nos o que pretende desenvolver..." required></textarea>
+      <textarea id="mensagem" placeholder="Conte-nos brevemente o que pretende desenvolver..." required></textarea>
       <button class="btn btn-primary" type="submit">Preparar e-mail</button>
       <p id="contactHint" class="contact-notice" role="status" aria-live="polite">Ao carregar no botão, será aberta a aplicação de e-mail para confirmar o envio. O site não envia mensagens automaticamente. Para denúncias, utilize exclusivamente o canal reservado.</p>
     </form>
@@ -817,7 +927,7 @@
         own:'Coleção própria', ownText:'Modelos KIARTE pensados para diferentes estilos, com foco na qualidade, conforto e presença visual.', priv:'Desenvolvimento privado', privText:'Criamos modelos exclusivos para marcas e empresas, respeitando briefing, posicionamento, materiais e objetivos comerciais.', samples:'Amostras e protótipos', samplesText:'Transformamos ideias em amostras físicas para validação de forma, conforto, materiais, cor e acabamento.', materials:'Seleção de materiais', materialsText:'Apoio na escolha de peles, componentes, solas, forros e acabamentos adequados ao modelo pretendido.', tech:'Acompanhamento técnico', techText:'Monitorização das etapas de desenvolvimento para garantir coerência, viabilidade e atenção ao detalhe.', brandProd:'Produto para marca', brandProdText:'Soluções ajustadas para quem pretende lançar, renovar ou complementar uma linha de calçado.',
         colTag:'Coleção', colTitle:'Uma coleção própria com linhas versáteis e <span>atuais</span>.', colLead:'A nossa coleção reúne modelos pensados para o dia a dia, para ocasiões profissionais e para clientes que procuram calçado com conforto e estética cuidada.', casual:'Casual', casualText:'Modelos práticos, confortáveis e fáceis de usar.', classic:'Clássico', classicText:'Linhas elegantes para uma presença discreta e profissional.', comfort:'Conforto', comfortText:'Formas e materiais pensados para bem-estar ao longo do dia.', exclusive:'Exclusivo', exclusiveText:'Propostas diferenciadas para marcas e clientes específicos.',
         privateTag:'Desenvolvimentos privados', privateTitle:'Tem uma ideia de calçado? Nós ajudamos a torná-la produto.', privateLead:'Trabalhamos com briefings privados para desenvolver modelos exclusivos. O processo é adaptado ao cliente, ao tipo de produto, ao orçamento e ao posicionamento da marca.', briefing:'Briefing', briefingText:'Percebemos o conceito, o público, o estilo pretendido, os materiais e os objetivos do projeto.', development:'Desenvolvimento', developmentText:'Definimos forma, componentes, cores, acabamentos e soluções técnicas para o modelo.', sample:'Amostra', sampleText:'Criamos a primeira versão para analisar conforto, estética, proporções e ajustes necessários.', validation:'Validação', validationText:'Ajustamos detalhes e preparamos o produto para apresentação, produção ou comercialização.',
-        contactTag:'Contactos', contactTitle:'Fale connosco sobre a sua coleção ou <span>novo modelo</span>.', contactLead:'Envie-nos uma mensagem com a ideia do projeto, o tipo de calçado pretendido e a fase em que se encontra. Entraremos em contacto consigo.', phone:'Telefone', location:'Localização', name:'Nome', namePh:'O seu nome', orderType:'Tipo de pedido', option1:'Coleção própria KIARTE', option2:'Desenvolvimento privado', option3:'Amostra ou protótipo', option4:'Outro assunto', message:'Mensagem', messagePh:'Conte-nos brevemente o que pretende desenvolver...', send:'Enviar mensagem', sent:'Mensagem enviada', footerDesc:'Empresa portuguesa de calçado com coleção própria e desenvolvimento privado de modelos para marcas e clientes profissionais.', menu:'Menu', request:'Pedir informações', rights:'© 2026 KIARTE. Todos os direitos reservados.', made:'Calçado português', mapText:'Ver localização KIARTE no Google Maps', mapOpen:'Abrir mapa'
+        contactTag:'Contactos', contactTitle:'Onde <span>estamos</span>.', contactLead:'Conheça as instalações da KIARTE em Torrados, Felgueiras, e saiba como entrar em contacto connosco.', companyNameLabel:'Nome da empresa', companyAddressLabel:'Morada', companyEmailLabel:'Email', companyPhoneLabel:'Telefone', companyTaxLabel:'N.º de contribuinte', formTag:'Enviar pedido', formTitle:'Fale connosco', formLead:'Preencha os campos abaixo para preparar a sua mensagem à KIARTE.', galleryLabel:'Fotografias da KIARTE', galleryPlaceholder:'Fotografia', phone:'Telefone', location:'Localização', name:'Nome', namePh:'O seu nome', orderType:'Tipo de pedido', option1:'Coleção própria KIARTE', option2:'Desenvolvimento privado', option3:'Amostra ou protótipo', option4:'Outro assunto', message:'Mensagem', messagePh:'Conte-nos brevemente o que pretende desenvolver...', send:'Enviar mensagem', sent:'Mensagem enviada', footerDesc:'Empresa portuguesa de calçado com coleção própria e desenvolvimento privado de modelos para marcas e clientes profissionais.', menu:'Menu', request:'Pedir informações', rights:'© 2026 KIARTE. Todos os direitos reservados.', made:'Calçado português', mapText:'Ver localização KIARTE no Google Maps', mapOpen:'Abrir mapa'
       },
       en: {
         navSobre: 'About', navServicos: 'What we do', navColecao: 'Collection', navPrivados: 'Private developments', navContactos: 'Contact', footerCanal:'Whistleblowing',
@@ -829,7 +939,7 @@
         own:'Own collection', ownText:'KIARTE models designed for different styles, focused on quality, comfort and visual presence.', priv:'Private development', privText:'We create exclusive models for brands and companies, respecting the briefing, positioning, materials and commercial goals.', samples:'Samples and prototypes', samplesText:'We turn ideas into physical samples to validate shape, comfort, materials, colour and finishing.', materials:'Material selection', materialsText:'Support in choosing leathers, components, soles, linings and finishes suited to the intended model.', tech:'Technical follow-up', techText:'Monitoring the development stages to ensure consistency, feasibility and attention to detail.', brandProd:'Product for brands', brandProdText:'Tailored solutions for those who want to launch, renew or complement a footwear line.',
         colTag:'Collection', colTitle:'An own collection with versatile and <span>current</span> lines.', colLead:'Our collection brings together models designed for everyday use, professional occasions and clients looking for footwear with comfort and refined aesthetics.', casual:'Casual', casualText:'Practical, comfortable and easy-to-wear models.', classic:'Classic', classicText:'Elegant lines for a discreet and professional presence.', comfort:'Comfort', comfortText:'Shapes and materials designed for wellbeing throughout the day.', exclusive:'Exclusive', exclusiveText:'Differentiated proposals for specific brands and clients.',
         privateTag:'Private developments', privateTitle:'Do you have a footwear idea? We help turn it into a product.', privateLead:'We work with private briefs to develop exclusive models. The process is adapted to the client, product type, budget and brand positioning.', briefing:'Briefing', briefingText:'We understand the concept, audience, intended style, materials and project goals.', development:'Development', developmentText:'We define the shape, components, colours, finishes and technical solutions for the model.', sample:'Sample', sampleText:'We create the first version to analyse comfort, aesthetics, proportions and necessary adjustments.', validation:'Validation', validationText:'We adjust details and prepare the product for presentation, production or commercialisation.',
-        contactTag:'Contact', contactTitle:'Talk to us about your collection or <span>new model</span>.', contactLead:'Send us a message with your project idea, the type of footwear you want and the stage you are at. We will get back to you.', phone:'Phone', location:'Location', name:'Name', namePh:'Your name', orderType:'Request type', option1:'KIARTE own collection', option2:'Private development', option3:'Sample or prototype', option4:'Other subject', message:'Message', messagePh:'Briefly tell us what you want to develop...', send:'Send message', sent:'Message sent', footerDesc:'Portuguese footwear company with its own collection and private model development for brands and professional clients.', menu:'Menu', request:'Request information', rights:'© 2026 KIARTE. All rights reserved.', made:'Portuguese footwear', mapText:'View KIARTE location on Google Maps', mapOpen:'Open map'
+        contactTag:'Contact', contactTitle:'Where to <span>find us</span>.', contactLead:'Discover KIARTE’s facilities in Torrados, Felgueiras, and find out how to contact us.', companyNameLabel:'Company name', companyAddressLabel:'Address', companyEmailLabel:'Email', companyPhoneLabel:'Phone', companyTaxLabel:'Tax identification number', formTag:'Send an enquiry', formTitle:'Contact us', formLead:'Complete the fields below to prepare your message to KIARTE.', galleryLabel:'Photos of KIARTE', galleryPlaceholder:'Photo', phone:'Phone', location:'Location', name:'Name', namePh:'Your name', orderType:'Request type', option1:'KIARTE own collection', option2:'Private development', option3:'Sample or prototype', option4:'Other subject', message:'Message', messagePh:'Briefly tell us what you want to develop...', send:'Send message', sent:'Message sent', footerDesc:'Portuguese footwear company with its own collection and private model development for brands and professional clients.', menu:'Menu', request:'Request information', rights:'© 2026 KIARTE. All rights reserved.', made:'Portuguese footwear', mapText:'View KIARTE location on Google Maps', mapOpen:'Open map'
       },
       fr: {
         navSobre: 'À propos', navServicos: 'Ce que nous faisons', navColecao: 'Collection', navPrivados: 'Développements privés', navContactos: 'Contacts', footerCanal:'Signalement',
@@ -841,7 +951,7 @@
         own:'Collection propre', ownText:'Modèles KIARTE pensés pour différents styles, avec une attention portée à la qualité, au confort et à la présence visuelle.', priv:'Développement privé', privText:'Nous créons des modèles exclusifs pour des marques et entreprises, en respectant le briefing, le positionnement, les matériaux et les objectifs commerciaux.', samples:'Échantillons et prototypes', samplesText:'Nous transformons les idées en échantillons physiques afin de valider la forme, le confort, les matériaux, la couleur et la finition.', materials:'Sélection des matériaux', materialsText:'Accompagnement dans le choix des cuirs, composants, semelles, doublures et finitions adaptés au modèle souhaité.', tech:'Suivi technique', techText:'Suivi des étapes de développement afin de garantir cohérence, faisabilité et attention au détail.', brandProd:'Produit pour marque', brandProdText:'Solutions adaptées à ceux qui souhaitent lancer, renouveler ou compléter une ligne de chaussures.',
         colTag:'Collection', colTitle:'Une collection propre avec des lignes polyvalentes et <span>actuelles</span>.', colLead:'Notre collection réunit des modèles pensés pour le quotidien, les occasions professionnelles et les clients qui recherchent des chaussures confortables à l’esthétique soignée.', casual:'Casual', casualText:'Modèles pratiques, confortables et faciles à porter.', classic:'Classique', classicText:'Lignes élégantes pour une présence discrète et professionnelle.', comfort:'Confort', comfortText:'Formes et matériaux pensés pour le bien-être tout au long de la journée.', exclusive:'Exclusif', exclusiveText:'Propositions différenciées pour des marques et clients spécifiques.',
         privateTag:'Développements privés', privateTitle:'Vous avez une idée de chaussure ? Nous vous aidons à la transformer en produit.', privateLead:'Nous travaillons avec des briefings privés pour développer des modèles exclusifs. Le processus est adapté au client, au type de produit, au budget et au positionnement de la marque.', briefing:'Briefing', briefingText:'Nous comprenons le concept, le public, le style souhaité, les matériaux et les objectifs du projet.', development:'Développement', developmentText:'Nous définissons la forme, les composants, les couleurs, les finitions et les solutions techniques du modèle.', sample:'Échantillon', sampleText:'Nous créons une première version afin d’analyser le confort, l’esthétique, les proportions et les ajustements nécessaires.', validation:'Validation', validationText:'Nous ajustons les détails et préparons le produit pour la présentation, la production ou la commercialisation.',
-        contactTag:'Contacts', contactTitle:'Parlez-nous de votre collection ou de votre <span>nouveau modèle</span>.', contactLead:'Envoyez-nous un message avec votre idée de projet, le type de chaussure souhaité et l’étape où vous vous trouvez. Nous vous contacterons rapidement.', phone:'Téléphone', location:'Localisation', name:'Nom', namePh:'Votre nom', orderType:'Type de demande', option1:'Collection propre KIARTE', option2:'Développement privé', option3:'Échantillon ou prototype', option4:'Autre sujet', message:'Message', messagePh:'Expliquez-nous brièvement ce que vous souhaitez développer...', send:'Envoyer le message', sent:'Message envoyé', footerDesc:'Entreprise portugaise de chaussures avec collection propre et développement privé de modèles pour marques et clients professionnels.', menu:'Menu', request:'Demander des informations', rights:'© 2026 KIARTE. Tous droits réservés.', made:'Chaussure portugaise', mapText:'Voir la localisation KIARTE sur Google Maps', mapOpen:'Ouvrir la carte'
+        contactTag:'Contacts', contactTitle:'Où nous <span>trouver</span>.', contactLead:'Découvrez les installations de KIARTE à Torrados, Felgueiras, et nos coordonnées.', companyNameLabel:'Nom de l’entreprise', companyAddressLabel:'Adresse', companyEmailLabel:'E-mail', companyPhoneLabel:'Téléphone', companyTaxLabel:'Numéro fiscal', formTag:'Envoyer une demande', formTitle:'Contactez-nous', formLead:'Remplissez les champs ci-dessous pour préparer votre message à KIARTE.', galleryLabel:'Photos de KIARTE', galleryPlaceholder:'Photo', phone:'Téléphone', location:'Localisation', name:'Nom', namePh:'Votre nom', orderType:'Type de demande', option1:'Collection propre KIARTE', option2:'Développement privé', option3:'Échantillon ou prototype', option4:'Autre sujet', message:'Message', messagePh:'Expliquez-nous brièvement ce que vous souhaitez développer...', send:'Envoyer le message', sent:'Message envoyé', footerDesc:'Entreprise portugaise de chaussures avec collection propre et développement privé de modèles pour marques et clients professionnels.', menu:'Menu', request:'Demander des informations', rights:'© 2026 KIARTE. Tous droits réservés.', made:'Chaussure portugaise', mapText:'Voir la localisation KIARTE sur Google Maps', mapOpen:'Ouvrir la carte'
       },
       es: {
         navSobre: 'Sobre nosotros', navServicos: 'Qué hacemos', navColecao: 'Colección', navPrivados: 'Desarrollos privados', navContactos: 'Contactos', footerCanal:'Canal de denuncias',
@@ -853,7 +963,7 @@
         own:'Colección propia', ownText:'Modelos KIARTE pensados para diferentes estilos, con foco en la calidad, la comodidad y la presencia visual.', priv:'Desarrollo privado', privText:'Creamos modelos exclusivos para marcas y empresas, respetando briefing, posicionamiento, materiales y objetivos comerciales.', samples:'Muestras y prototipos', samplesText:'Transformamos ideas en muestras físicas para validar forma, comodidad, materiales, color y acabado.', materials:'Selección de materiales', materialsText:'Apoyo en la elección de pieles, componentes, suelas, forros y acabados adecuados al modelo pretendido.', tech:'Seguimiento técnico', techText:'Monitorización de las etapas de desarrollo para garantizar coherencia, viabilidad y atención al detalle.', brandProd:'Producto para marca', brandProdText:'Soluciones ajustadas para quien pretende lanzar, renovar o complementar una línea de calzado.',
         colTag:'Colección', colTitle:'Una colección propia con líneas versátiles y <span>actuales</span>.', colLead:'Nuestra colección reúne modelos pensados para el día a día, para ocasiones profesionales y para clientes que buscan calzado con comodidad y estética cuidada.', casual:'Casual', casualText:'Modelos prácticos, cómodos y fáciles de usar.', classic:'Clásico', classicText:'Líneas elegantes para una presencia discreta y profesional.', comfort:'Comodidad', comfortText:'Formas y materiales pensados para el bienestar durante todo el día.', exclusive:'Exclusivo', exclusiveText:'Propuestas diferenciadas para marcas y clientes específicos.',
         privateTag:'Desarrollos privados', privateTitle:'¿Tiene una idea de calzado? Le ayudamos a convertirla en producto.', privateLead:'Trabajamos con briefings privados para desarrollar modelos exclusivos. El proceso se adapta al cliente, al tipo de producto, al presupuesto y al posicionamiento de la marca.', briefing:'Briefing', briefingText:'Entendemos el concepto, el público, el estilo deseado, los materiales y los objetivos del proyecto.', development:'Desarrollo', developmentText:'Definimos forma, componentes, colores, acabados y soluciones técnicas para el modelo.', sample:'Muestra', sampleText:'Creamos la primera versión para analizar comodidad, estética, proporciones y ajustes necesarios.', validation:'Validación', validationText:'Ajustamos detalles y preparamos el producto para presentación, producción o comercialización.',
-        contactTag:'Contactos', contactTitle:'Hable con nosotros sobre su colección o <span>nuevo modelo</span>.', contactLead:'Envíenos un mensaje con la idea del proyecto, el tipo de calzado deseado y la fase en la que se encuentra. Nos pondremos en contacto.', phone:'Teléfono', location:'Ubicación', name:'Nombre', namePh:'Su nombre', orderType:'Tipo de pedido', option1:'Colección propia KIARTE', option2:'Desarrollo privado', option3:'Muestra o prototipo', option4:'Otro asunto', message:'Mensaje', messagePh:'Cuéntenos brevemente qué desea desarrollar...', send:'Enviar mensaje', sent:'Mensaje enviado', footerDesc:'Empresa portuguesa de calzado con colección propia y desarrollo privado de modelos para marcas y clientes profesionales.', menu:'Menú', request:'Solicitar información', rights:'© 2026 KIARTE. Todos los derechos reservados.', made:'Calzado portugués', mapText:'Ver ubicación KIARTE en Google Maps', mapOpen:'Abrir mapa'
+        contactTag:'Contactos', contactTitle:'Dónde <span>estamos</span>.', contactLead:'Conozca las instalaciones de KIARTE en Torrados, Felgueiras, y nuestros datos de contacto.', companyNameLabel:'Nombre de la empresa', companyAddressLabel:'Dirección', companyEmailLabel:'Correo electrónico', companyPhoneLabel:'Teléfono', companyTaxLabel:'N.º de identificación fiscal', formTag:'Enviar solicitud', formTitle:'Contacte con nosotros', formLead:'Rellene los campos siguientes para preparar su mensaje a KIARTE.', galleryLabel:'Fotos de KIARTE', galleryPlaceholder:'Foto', phone:'Teléfono', location:'Ubicación', name:'Nombre', namePh:'Su nombre', orderType:'Tipo de pedido', option1:'Colección propia KIARTE', option2:'Desarrollo privado', option3:'Muestra o prototipo', option4:'Otro asunto', message:'Mensaje', messagePh:'Cuéntenos brevemente qué desea desarrollar...', send:'Enviar mensaje', sent:'Mensaje enviado', footerDesc:'Empresa portuguesa de calzado con colección propia y desarrollo privado de modelos para marcas y clientes profesionales.', menu:'Menú', request:'Solicitar información', rights:'© 2026 KIARTE. Todos los derechos reservados.', made:'Calzado portugués', mapText:'Ver ubicación KIARTE en Google Maps', mapOpen:'Abrir mapa'
       }
     };
 
@@ -864,7 +974,7 @@
       ['sobreTag', '#sobre .tag'], ['sobreBoxTitle', '#sobre .about-box h3'], ['sobreBoxText', '#sobre .about-box p'], ['sobreTitle', '#sobre .title'], ['sobreP1', '#sobre .about-text p:nth-of-type(1)'], ['sobreP2', '#sobre .about-text p:nth-of-type(2)'], ['sobreBtn', '#sobre .btn-primary'], ['certTag', '#certificacoes .tag'], ['certTitle', '#certificacoes .title'], ['certLead', '#certificacoes .lead'], ['certIntro', '#certificacoes .cert-intro'],
       ['servTag', '#servicos .tag'], ['servTitle', '#servicos .title'], ['servLead', '#servicos .lead'], ['consTitle', '#servicos .construction-label'],
       ['colTag', '#colecao .tag'], ['colTitle', '#colecao .title'], ['colLead', '#colecao .lead'], ['privateTag', '#privados .tag'], ['privateTitle', '#privados .title'], ['privateLead', '#privados .lead'],
-      ['contactTag', '#contactos .tag'], ['contactTitle', '#contactos .title'], ['contactLead', '#contactos .lead'], ['footerDesc', '.footer-brand p'], ['rights', '.footer-bottom span:first-child'], ['made', '.footer-bottom span:last-child']
+      ['contactTag', '#contactos .contact-heading .tag'], ['contactTitle', '#contactos .contact-heading .title'], ['contactLead', '#contactos .contact-heading .lead'], ['formTag', '#contactos .contact-form-intro .tag'], ['formTitle', '#contactos .contact-form-intro h3'], ['formLead', '#contactos .contact-form-intro p'], ['footerDesc', '.footer-brand p'], ['rights', '.footer-bottom span:first-child'], ['made', '.footer-bottom span:last-child']
     ];
     const cardKeys = [['own','ownText'],['priv','privText'],['samples','samplesText'],['materials','materialsText'],['tech','techText'],['brandProd','brandProdText']];
     const colKeys = [['casual','casualText'],['classic','classicText'],['comfort','comfortText'],['exclusive','exclusiveText']];
@@ -879,8 +989,15 @@
       document.querySelectorAll('#colecao .collection-item').forEach((el,i)=>{ const k=colKeys[i]; if(k){ el.querySelector('h3').innerHTML=t[k[0]]; el.querySelector('p').innerHTML=t[k[1]]; }});
       document.querySelectorAll('#certificacoes .cert-card').forEach((el,i)=>{ const k=certKeys[i]; if(k){ el.querySelector('h3').innerHTML=t[k[0]]; el.querySelector('p').innerHTML=t[k[1]]; }});
       document.querySelectorAll('#privados .step').forEach((el,i)=>{ const k=stepKeys[i]; if(k){ el.querySelector('h3').innerHTML=t[k[0]]; el.querySelector('p').innerHTML=t[k[1]]; }});
-      document.querySelectorAll('.contact-item span')[1].innerHTML = t.phone;
-      document.querySelectorAll('.contact-item span')[2].innerHTML = t.location;
+      document.querySelectorAll('#contactos .detail-label').forEach((el,i) => {
+        el.textContent = [t.companyNameLabel,t.companyAddressLabel,t.companyEmailLabel,t.companyPhoneLabel,t.companyTaxLabel][i];
+      });
+      const gallery = document.querySelector('#contactos .company-gallery');
+      gallery.setAttribute('aria-label', t.galleryLabel);
+      gallery.querySelectorAll('.company-photo').forEach((el,i) => {
+        el.querySelector('img').alt = t.galleryPlaceholder + ' ' + (i+1) + ' — KIARTE';
+        el.querySelector('.company-photo-placeholder').textContent = t.galleryPlaceholder + ' ' + (i+1);
+      });
       document.querySelector('label[for="nome"]').innerHTML = t.name; document.getElementById('nome').placeholder = t.namePh;
       document.querySelector('label[for="tipo"]').innerHTML = t.orderType;
       document.querySelector('label[for="mensagem"]').innerHTML = t.message; document.getElementById('mensagem').placeholder = t.messagePh;
@@ -903,6 +1020,11 @@
       });
       localStorage.setItem('kiarteLang', lang);
     }
+    document.querySelectorAll('#contactos .company-photo img').forEach(img => {
+      const markEmpty = () => img.closest('.company-photo').classList.add('is-empty');
+      img.addEventListener('error', markEmpty);
+      if (img.complete && img.naturalWidth === 0) markEmpty();
+    });
     document.querySelectorAll('.lang-link').forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.lang)));
     setLang(localStorage.getItem('kiarteLang') || 'pt');
   </script>
