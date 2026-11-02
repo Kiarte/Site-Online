@@ -808,18 +808,18 @@
       <p class="lead">Conheça as instalações da KIARTE em Torrados, Felgueiras, e saiba como entrar em contacto connosco.</p>
     </div>
 
-    <!-- Colocar imagens/empresa-1.jpg, empresa-2.jpg e empresa-3.jpg no GitHub. -->
+    <!-- Fotografias das instalações: nomes exatamente iguais aos ficheiros no GitHub. -->
     <div class="company-gallery" aria-label="Fotografias da KIARTE">
       <figure class="company-photo">
-        <img src="imagens/empresa-1.png" alt="Fotografia 1 da KIARTE" loading="lazy">
+        <img src="imagens/empresa-1.png" alt="Fotografia 1 da KIARTE" loading="eager">
         <figcaption class="company-photo-placeholder">Fotografia 1</figcaption>
       </figure>
       <figure class="company-photo">
-        <img src="imagens/empresa-2.png" alt="Fotografia 2 da KIARTE" loading="lazy">
+        <img src="imagens/empresa-2.png" alt="Fotografia 2 da KIARTE" loading="eager">
         <figcaption class="company-photo-placeholder">Fotografia 2</figcaption>
       </figure>
       <figure class="company-photo">
-        <img src="imagens/empresa-3.JPG" alt="Fotografia 3 da KIARTE" loading="lazy">
+        <img src="imagens/empresa-3.JPG" alt="Fotografia 3 da KIARTE" loading="eager">
         <figcaption class="company-photo-placeholder">Fotografia 3</figcaption>
       </figure>
     </div>
@@ -1040,10 +1040,12 @@
       });
       localStorage.setItem('kiarteLang', lang);
     }
+    // As fotografias não devem ser ocultadas antes de terminarem de carregar.
+    // Só apresentar a indicação de fotografia indisponível se ocorrer um erro real.
     document.querySelectorAll('#contactos .company-photo img').forEach(img => {
-      const markEmpty = () => img.closest('.company-photo').classList.add('is-empty');
-      img.addEventListener('error', markEmpty);
-      if (img.complete && img.naturalWidth === 0) markEmpty();
+      const photo = img.closest('.company-photo');
+      img.addEventListener('load', () => photo.classList.remove('is-empty'));
+      img.addEventListener('error', () => photo.classList.add('is-empty'));
     });
     document.querySelectorAll('.lang-link').forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.lang)));
     setLang(localStorage.getItem('kiarteLang') || 'pt');
