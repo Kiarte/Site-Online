@@ -38,7 +38,7 @@
   },
   "legalName": "Manuel Leite de Melo, Lda.",
   "taxID": "501911359",
-  "telephone": "+351 255 340 320",
+  "telephone": "+351 923 102 552",
   "email": "kiarte@kiarte.pt",
   "address": {
     "@type": "PostalAddress",
@@ -705,21 +705,21 @@
     <p class="cert-intro">Atualmente, a KIARTE conta com auditoria social e ambiental ICS Audits com pontuação de 95%, certificação Higg FEM, utilização de caixas e cartões de fornecedores certificados FSC e utilização de couros certificados LWG.</p>
     <div class="cert-grid">
       <article class="cert-card">
-        <img src="imagens/cert-ics.jpg" alt="Certificação ICS Audits da KIARTE" loading="lazy">
+        <img src="imagens/cert-ics.JPG" alt="Certificação ICS Audits da KIARTE" loading="lazy">
         <div class="cert-card-body">
           <h3>ICS Audits</h3>
           <p>Auditoria social e ambiental concluída com sucesso pela KIARTE, com pontuação de 95%.</p>
         </div>
       </article>
       <article class="cert-card">
-        <img src="imagens/cert-higg-fem.jpg" alt="Certificação Higg FEM" loading="lazy">
+        <img src="imagens/cert-higg-fem.png" alt="Certificação Higg FEM" loading="lazy">
         <div class="cert-card-body">
           <h3>Higg FEM</h3>
           <p>A KIARTE dispõe da certificação Higg FEM, relevante para a avaliação do desempenho ambiental da unidade produtiva.</p>
         </div>
       </article>
       <article class="cert-card">
-        <img src="imagens/cert-fsc-embalagens.jpg" alt="Certificados FSC dos fornecedores de caixas e cartões utilizados pela KIARTE" loading="lazy">
+        <img src="imagens/cert-ics.png" alt="Certificados FSC dos fornecedores de caixas e cartões utilizados pela KIARTE" loading="lazy">
         <div class="cert-card-body">
           <h3>FSC — Caixas e cartões</h3>
           <p>As caixas e os cartões utilizados pela KIARTE são fornecidos por empresas com certificação FSC, conforme os certificados dos respetivos fornecedores.</p>
@@ -811,15 +811,15 @@
     <!-- Colocar imagens/empresa-1.jpg, empresa-2.jpg e empresa-3.jpg no GitHub. -->
     <div class="company-gallery" aria-label="Fotografias da KIARTE">
       <figure class="company-photo">
-        <img src="imagens/empresa-1.jpg" alt="Fotografia 1 da KIARTE" loading="lazy">
+        <img src="imagens/empresa-1.png" alt="Fotografia 1 da KIARTE" loading="lazy">
         <figcaption class="company-photo-placeholder">Fotografia 1</figcaption>
       </figure>
       <figure class="company-photo">
-        <img src="imagens/empresa-2.jpg" alt="Fotografia 2 da KIARTE" loading="lazy">
+        <img src="imagens/empresa-2.png" alt="Fotografia 2 da KIARTE" loading="lazy">
         <figcaption class="company-photo-placeholder">Fotografia 2</figcaption>
       </figure>
       <figure class="company-photo">
-        <img src="imagens/empresa-3.jpg" alt="Fotografia 3 da KIARTE" loading="lazy">
+        <img src="imagens/empresa-3.JPG" alt="Fotografia 3 da KIARTE" loading="lazy">
         <figcaption class="company-photo-placeholder">Fotografia 3</figcaption>
       </figure>
     </div>
@@ -842,7 +842,7 @@
       <div class="company-detail"><span class="detail-label">Nome da empresa</span><p>KIARTE — Manuel Leite de Melo, Lda.</p></div>
       <div class="company-detail"><span class="detail-label">Morada</span><p>Rua do Roço, n.º 81, 4650-606 Torrados, Felgueiras, Portugal</p></div>
       <div class="company-detail"><span class="detail-label">Email</span><p><a href="mailto:kiarte@kiarte.pt">kiarte@kiarte.pt</a></p></div>
-      <div class="company-detail"><span class="detail-label">Telefone</span><p><a href="tel:+351255340320">+351 255 340 320</a></p></div>
+      <div class="company-detail"><span class="detail-label">Telefone</span><p><a href="tel:+351923102552">+351 923 102 552</a></p></div>
       <div class="company-detail"><span class="detail-label">N.º de contribuinte</span><p>501 911 359</p></div>
     </div>
 
@@ -1049,36 +1049,5 @@
     setLang(localStorage.getItem('kiarteLang') || 'pt');
   </script>
 
-  <script>
-    /* Compatibilidade com ficheiros de certificações .jpg, .jpeg, .png e .webp.
-       O GitHub distingue maiúsculas de minúsculas. Para máxima fiabilidade,
-       use os nomes indicados no guia de atualização. */
-    (() => {
-      const alternatives = {
-        'cert-ics': ['cert-ics', 'ICS', 'ics', 'ICS Audits', 'ics-audits', 'ICSAudits', 'certificado-ics', 'certificacao-ics'],
-        'cert-higg-fem': ['cert-higg-fem', 'HIGG', 'higg', 'Higg FEM', 'HIGG FEM', 'higg-fem', 'HiggFEM', 'certificado-higg', 'certificacao-higg'],
-        'cert-fsc-embalagens': ['cert-fsc-embalagens', 'FSC', 'fsc', 'FSC caixas', 'fsc-caixas', 'fsc-embalagens', 'cert-fsc-caixas', 'cert-fsc-cartoes', 'certificado-fsc', 'certificacao-fsc']
-      };
-      const extensions = ['jpg', 'png', 'jpeg', 'webp', 'JPG', 'PNG', 'JPEG'];
-      document.querySelectorAll('#certificacoes .cert-card img').forEach((img) => {
-        const original = img.getAttribute('src') || '';
-        const stem = original.split('/').pop().replace(/\.[^.]+$/, '');
-        if (!alternatives[stem]) return;
-        const candidates = [...new Set(alternatives[stem].flatMap(name =>
-          extensions.map(ext => 'imagens/' + name + '.' + ext)
-        ))].filter(candidate => candidate !== original);
-        let next = 0;
-        const tryNext = () => {
-          if (next < candidates.length) {
-            img.src = encodeURI(candidates[next++]);
-          } else {
-            console.warn('[KIARTE] Imagem em falta:', original, '— confira o nome e a pasta imagens do GitHub.');
-          }
-        };
-        img.addEventListener('error', tryNext);
-        if (img.complete && img.naturalWidth === 0) tryNext();
-      });
-    })();
-  </script>
 </body>
 </html>
