@@ -455,6 +455,24 @@
     .cert-card-body { padding: 1.5rem; }
     .cert-card h3 { font-size: 1.18rem; margin-bottom: .65rem; color: var(--blue-dark); }
     .cert-card p { color: var(--muted); line-height: 1.7; }
+
+    /* If an FSC image has not been uploaded, show a clearly labelled placeholder
+       instead of displaying a different certificate under the FSC heading. */
+    .cert-photo-placeholder {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 240px;
+      gap: .35rem;
+      color: var(--blue-dark);
+      background: linear-gradient(135deg, #eaf5ff, #d8ebfa);
+    }
+    .cert-photo-placeholder span { font-weight: 800; font-size: 2.4rem; letter-spacing: .12em; }
+    .cert-photo-placeholder small { font-size: .9rem; font-weight: 650; }
+    .cert-card.image-missing img { display: none; }
+    .cert-card.image-missing .cert-photo-placeholder { display: flex; }
+
     /* CONTACTOS: fotografias, mapa, dados e formulário em sequência vertical */
     #contactos {
       display: flex;
@@ -705,7 +723,7 @@
     <p class="cert-intro">Atualmente, a KIARTE conta com auditoria social e ambiental ICS Audits com pontuação de 95%, certificação Higg FEM, utilização de caixas e cartões de fornecedores certificados FSC e utilização de couros certificados LWG.</p>
     <div class="cert-grid">
       <article class="cert-card">
-        <img src="imagens/cert-ics.JPG" alt="Certificação ICS Audits da KIARTE" loading="lazy">
+        <img src="imagens/cert-ics.png" alt="Resultado da auditoria ICS Audits da KIARTE, com classificação de 95%" loading="eager" decoding="async">
         <div class="cert-card-body">
           <h3>ICS Audits</h3>
           <p>Auditoria social e ambiental concluída com sucesso pela KIARTE, com pontuação de 95%.</p>
@@ -719,7 +737,8 @@
         </div>
       </article>
       <article class="cert-card">
-        <img src="imagens/cert-ics.png" alt="Certificados FSC dos fornecedores de caixas e cartões utilizados pela KIARTE" loading="lazy">
+        <img src="imagens/cert-fsc-embalagens.png" alt="Certificação FSC dos fornecedores de caixas e cartões da KIARTE" loading="lazy" decoding="async">
+        <div class="cert-photo-placeholder" aria-label="Imagem FSC ainda por adicionar"><span>FSC</span><small>Caixas e cartões</small></div>
         <div class="cert-card-body">
           <h3>FSC — Caixas e cartões</h3>
           <p>As caixas e os cartões utilizados pela KIARTE são fornecidos por empresas com certificação FSC, conforme os certificados dos respetivos fornecedores.</p>
@@ -1042,10 +1061,33 @@
     }
     // As fotografias não devem ser ocultadas antes de terminarem de carregar.
     // Só apresentar a indicação de fotografia indisponível se ocorrer um erro real.
-    document.querySelectorAll('#contactos .company-photo img').forEach(img => {
-      const photo = img.closest('.company-photo');
-      img.addEventListener('load', () => photo.classList.remove('is-empty'));
-      img.addEventListener('error', () => photo.classList.add('is-empty'));
+    /* Try files published on the domain first; if GitHub Pages has not yet
+       deployed an uploaded image, use the original public GitHub asset.
+       Avoid declaring an image missing before all attempts have finished. */
+    document.querySelectorAll('#contactos .company-photo img, #certificacoes .cert-card img').forEach(img => {
+      const box = img.closest('.company-photo, .cert-card');
+      const path = img.getAttribute('src').split('?')[0];
+      const raw = 'https://raw.githubusercontent.com/Kiarte/Site-Online/main/';
+      const attempts = [path + '?v=20261103', raw + path];
+      if (path === 'imagens/cert-fsc-embalagens.png') {
+        attempts.push('imagens/cert-fsc-embalagens.jpg?v=20261103');
+        attempts.push(raw + 'imagens/cert-fsc-embalagens.jpg');
+      }
+      let index = -1;
+      const missing = () => {
+        if (index + 1 < attempts.length) {
+          index++;
+          img.src = attempts[index];
+        } else {
+          box.classList.add(box.classList.contains('company-photo') ? 'is-empty' : 'image-missing');
+        }
+      };
+      img.addEventListener('load', () => {
+        box.classList.remove('is-empty', 'image-missing');
+      });
+      img.addEventListener('error', missing);
+      // Start a new request; handles cached failures and case-sensitive filenames.
+      missing();
     });
     document.querySelectorAll('.lang-link').forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.lang)));
     setLang(localStorage.getItem('kiarteLang') || 'pt');
