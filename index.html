@@ -642,10 +642,6 @@
       .hamburger {display:flex;}
     }
     .contact-notice {margin: .85rem 0 0;color:var(--muted);font-size:.79rem;line-height:1.6;}
-    .recaptcha-area { margin: .5rem 0 1.25rem; min-height:78px; }
-    .recaptcha-setup { padding: .9rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: var(--blue-soft); color: var(--blue-dark); font-size:.85rem; line-height:1.5; }
-    .recaptcha-error { color:#a52727; font-size:.85rem; margin: .4rem 0 .8rem; min-height:1.2em; }
-    @media(max-width:380px) { .recaptcha-area { transform-origin:left top; transform:scale(.92); } }
   </style>
 </head>
 <body>
@@ -868,35 +864,7 @@
       <div class="company-detail"><span class="detail-label">Telefone</span><p><a href="tel:+351923102552">+351 923 102 552</a></p></div>
       <div class="company-detail"><span class="detail-label">N.º de contribuinte</span><p>501 911 359</p></div>
     </div>
-
-    <div class="contact-form-intro">
-      <span class="tag">Enviar pedido</span>
-      <h3>Fale connosco</h3>
-      <p>Preencha os campos abaixo para preparar a sua mensagem à KIARTE.</p>
-    </div>
-    <form class="contact-form" onsubmit="handleSubmit(event)">
-      <div class="row">
-        <div><label for="nome">Nome</label><input id="nome" type="text" autocomplete="name" placeholder="O seu nome" required></div>
-        <div><label for="email">Email</label><input id="email" type="email" autocomplete="email" placeholder="email@exemplo.com" required></div>
-      </div>
-      <label for="tipo">Tipo de pedido</label>
-      <select id="tipo">
-        <option>Coleção própria KIARTE</option>
-        <option>Desenvolvimento privado</option>
-        <option>Amostra ou protótipo</option>
-        <option>Outro assunto</option>
-      </select>
-      <label for="mensagem">Mensagem</label>
-      <textarea id="mensagem" placeholder="Conte-nos brevemente o que pretende desenvolver..." required></textarea>
-      <!-- reCAPTCHA v2: trocar a chave pública de exemplo no script abaixo pela chave do domínio kiarte.pt. -->
-      <div class="recaptcha-area" id="kiarteCaptchaArea" aria-label="Verificação de segurança">
-        <div id="kiarteRecaptcha"></div>
-        <div id="recaptchaSetup" class="recaptcha-setup">A verificação de segurança está a aguardar configuração.</div>
-      </div>
-      <p id="recaptchaError" class="recaptcha-error" role="alert" aria-live="polite"></p>
-      <button class="btn btn-primary" type="submit">Preparar e-mail</button>
-      <p id="contactHint" class="contact-notice" role="status" aria-live="polite">Ao carregar no botão, será aberta a aplicação de e-mail para confirmar o envio. O site não envia mensagens automaticamente. Para denúncias, utilize exclusivamente o canal reservado.</p>
-    </form>
+    <!-- Formulário de contacto desativado a pedido da KIARTE. -->
   </section>
 
   <footer>
@@ -940,28 +908,6 @@
       nav.style.boxShadow = window.scrollY > 40 ? '0 10px 30px rgba(11,79,145,.10)' : 'none';
     });
 
-    // CONFIGURAÇÃO reCAPTCHA v2 CHECKBOX: inserir APENAS a chave pública (site key).
-    // Nunca colocar a chave SECRETA no HTML / GitHub Pages.
-    const KIARTE_RECAPTCHA_SITE_KEY = 'COLOCAR_AQUI_A_SITE_KEY_RECAPTCHA_V2';
-    let kiarteRecaptchaWidget = null;
-    function kiarteRecaptchaReady() {
-      if (KIARTE_RECAPTCHA_SITE_KEY.startsWith('COLOCAR_AQUI_')) return;
-      if (!window.grecaptcha || !document.getElementById('kiarteRecaptcha')) return;
-      try {
-        kiarteRecaptchaWidget = grecaptcha.render('kiarteRecaptcha', {
-          sitekey: KIARTE_RECAPTCHA_SITE_KEY,
-          theme: 'light',
-          callback: function() { document.getElementById('recaptchaError').textContent = ''; },
-          'expired-callback': function() { document.getElementById('recaptchaError').textContent = 'A verificação expirou. Confirme novamente que não é um robô.'; }
-        });
-        document.getElementById('recaptchaSetup').hidden = true;
-      } catch (err) {
-        document.getElementById('recaptchaError').textContent = 'Não foi possível carregar a verificação. Verifique a chave e o domínio.';
-      }
-    }
-    // NOTA: a verificação aqui é apenas no browser, pois o formulário usa mailto:.
-    // Para um envio real pelo servidor é obrigatória a validação do token no backend.
-
     // Formulário comercial: GitHub Pages é estático e não processa envios.
     // Abre a aplicação de email; o utilizador deve confirmar o envio manualmente.
     // Nunca usar este mecanismo para denúncias ou outros dados sensíveis.
@@ -973,16 +919,6 @@
       const tipo = el('tipo').value;
       const mensagem = el('mensagem').value.trim();
       if (!nome || !email || !mensagem) return;
-      const erroCaptcha = el('recaptchaError');
-      if (kiarteRecaptchaWidget === null || !window.grecaptcha) {
-        erroCaptcha.textContent = 'A verificação ainda não está configurada. Contacte a KIARTE diretamente pelo endereço de e-mail indicado acima.';
-        return;
-      }
-      if (!grecaptcha.getResponse(kiarteRecaptchaWidget)) {
-        erroCaptcha.textContent = 'Por favor, selecione «Não sou um robô» antes de continuar.';
-        return;
-      }
-      erroCaptcha.textContent = '';
       const assunto = 'KIARTE — ' + tipo;
       const corpo = `Nome: ${nome}\nEmail: ${email}\nTipo de pedido: ${tipo}\n\nMensagem:\n${mensagem}`;
       const aviso = el('contactHint');
@@ -1135,6 +1071,5 @@
     setLang(localStorage.getItem('kiarteLang') || 'pt');
   </script>
 
-  <script src="https://www.google.com/recaptcha/api.js?onload=kiarteRecaptchaReady&amp;render=explicit" async defer></script>
 </body>
 </html>
